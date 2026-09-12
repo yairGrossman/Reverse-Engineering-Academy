@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m07-pe-headers.zip",
+  "password": "reverse",
+  "sources": ["headers.c"],
+  "artifactName": "headers.exe",
+  "flags": ["-O1"],
+  "strip": false
+}

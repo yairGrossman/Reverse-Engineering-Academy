@@ -60,6 +60,18 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-12T23:34:23.317Z',
   },
+  "m07-elf-headers.zip": {
+    sha256: 'a6386b645181e98d75791d79298676494d9c4d58286424ed84caf7c40e06eda8',
+    bytes: 3091,
+    format: 'ELF',
+    builtAt: '2026-09-12T23:41:45.227Z',
+  },
+  "m07-pe-headers.zip": {
+    sha256: '5852720a1bdeae237e2a3ad77f982c7df79c908f0860f5164cef3fce8a616618',
+    bytes: 40541,
+    format: 'PE',
+    builtAt: '2026-09-12T23:41:44.052Z',
+  },
   "m08-net-keycheck.zip": {
     sha256: '7e5b7605fbc8446727b92810d29dd7bec61166c3e394016608ddbf0214bd62de',
     bytes: 2281,

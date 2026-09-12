@@ -1,0 +1,8 @@
+{
+  "format": "ELF",
+  "zip": "m07-elf-headers.zip",
+  "password": "reverse",
+  "sources": ["../m07-pe-headers/headers.c"],
+  "artifactName": "headers",
+  "flags": ["-O1"]
+}

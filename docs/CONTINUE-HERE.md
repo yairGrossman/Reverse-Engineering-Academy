@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 6 of 14 |
-| Lessons | 22 |
-| Quiz questions | 53 |
-| Labs wired into lessons | 7 (PE, ELF, PE, ELF, PE, PE, PE) |
-| Lab artifacts built | 11 |
+| Modules written | 7 of 14 |
+| Lessons | 26 |
+| Quiz questions | 63 |
+| Labs wired into lessons | 9 across modules 2–7 |
+| Lab artifacts built | 13 |
 
-Modules 1–6 are done. Four more artifacts already build and are waiting for their modules:
+Modules 1–7 are done. Part 1 and Part 2 are complete. Four more artifacts already build and are waiting for their modules:
 `m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
@@ -56,6 +56,7 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | JVM Spec **SE 21** ch.4 | `docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html` | `ClassFile`, magic `0xCAFEBABE`, constant pool, `Code` attribute | **Exact match to installed JDK 21** |
 | DEX format | `source.android.com/docs/core/runtime/dex-format` | `header_item`, `DEX_FILE_MAGIC`, `string_ids`, `class_defs` | Official AOSP |
 | System V gABI ch.4 | `sco.com/developers/gabi/latest/ch4.eheader.html` | `EI_MAG0..3` = `0x7f 'E' 'L' 'F'`, `e_type`, `e_machine` | Generic ABI |
+| System V gABI ch.4 **sheader** | `sco.com/developers/gabi/latest/ch4.sheader.html` | `sh_addr`/`sh_offset`/`sh_size`, SHF_EXECINSTR/ALLOC/WRITE, `.text`/`.rodata`/`.data` | Generic ABI — fetched for module 7 |
 | ECMA-335 | `ecma-international.org/publications-and-standards/standards/ecma-335/` | Partition II metadata, Partition III CIL | 6th ed. 2012 — **see failure 4** |
 | Intel SDM | `intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html` | Vol. 2 instruction reference, Vol. 1 basic architecture | version 092, 2026-08-19 |
 | Cloudflare `_headers` | `developers.cloudflare.com/pages/configuration/headers/` | 100 rules, 2,000 chars per line | Official — **see failure 1** |
@@ -124,14 +125,13 @@ it into `labs/` tooling if a later module needs the same.
 
 | Module | Documents | Notes |
 |---|---|---|
-| 7 · PE and ELF formats | The two format docs above, chapters on sections and imports | Verify RVA-to-file-offset arithmetic against a real artifact with `objdump`. |
 | 12 · Obfuscation and packing | UPX docs; vendor docs per technique covered | Teach detection, not evasion. |
 | 13 · Patching and instrumentation | Frida documentation | |
 | 14 · Capstone | None new | Reuses the above. |
 
 ## Labs still to build
 
-Modules 7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Modules 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -214,7 +214,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
 | | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
 | | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
-| | 7 | PE and ELF File Formats | PE + ELF |
+| | 7 | PE and ELF File Formats | PE + ELF from one source — done |
 | 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE (**already built**) |
 | | 9 | Java — class format, JVM bytecode | JAR (**already built**) |
 | | 10 | Android — dex, manifest, repack and resign | APK (**already built**) |
