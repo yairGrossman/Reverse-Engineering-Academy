@@ -5,10 +5,10 @@
   "description": "An interactive course on reverse engineering \u2014 from zero to mastery, with real compiled binaries to analyse.",
   "author": "Yair Grossman (https://github.com/yairGrossman)",
   "license": "MIT",
-  "homepage": "https://reverse-engineering-academy.pages.dev",
+  "homepage": "https://github.com/yairGrossman/Reverse-Engineering-Academy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yairGrossman/reverse-engineering-academy.git"
+    "url": "git+https://github.com/yairGrossman/Reverse-Engineering-Academy.git"
   },
   "type": "module",
   "scripts": {
@@ -31,5 +31,8 @@
     "oxlint": "^1.71.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/yairGrossman/Reverse-Engineering-Academy/issues"
   }
 }
