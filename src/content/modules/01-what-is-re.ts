@@ -2,7 +2,13 @@
  * SOURCES (fetched while writing this module):
  * - Ghidra: https://github.com/NationalSecurityAgency/ghidra
  *   NSA Research Directorate; Apache-2.0; disassembly, assembly, decompilation,
- *   graphing, scripting; README states "Install JDK 25 64-bit".
+ *   graphing, scripting. JDK requirement CORRECTED while writing module 5: the
+ *   shipped release 12.1.3 states "Java 21 64-bit Runtime and Development Kit
+ *   (JDK)" in its own docs/GettingStarted.md line 54, read from the extracted
+ *   ghidra_12.1.3_PUBLIC tree on this machine (application.build.date=
+ *   2026-Aug-17). The master README on GitHub asks for JDK 25, but that tracks
+ *   building from source rather than the release a learner downloads — a
+ *   version/variant mismatch, so the release doc is the one cited.
  * - x64dbg: https://x64dbg.com/ — "An open-source x64/x32 debugger for windows",
  *   GPLv3, downloads at https://snapshots.x64dbg.com
  * - jadx: https://github.com/skylot/jadx — Dex to Java decompiler; accepts
@@ -234,7 +240,7 @@ export const whatIsReModule: Module = {
           type: 'callout',
           variant: 'warning',
           title: 'Ghidra needs its own JDK',
-          text: "Ghidra's README states it plainly: **install JDK 25, 64-bit**. This is a common first stumble — an older JDK on your PATH leaves Ghidra refusing to start with an error that never quite says \"wrong Java\". Install JDK 25 before you install Ghidra.",
+          text: "The release you download states its requirement in its own `docs/GettingStarted.md`: **Java 21, 64-bit, the JDK and not just a runtime**. Install it before Ghidra. Two traps: the project's README on GitHub asks for a newer JDK because that one is about building Ghidra from source, and an unsuitable JDK already on your PATH makes Ghidra refuse to start with an error that never quite says \"wrong Java\". Check `GettingStarted.md` inside the version you actually unpacked.",
         },
         {
           type: 'heading',
@@ -254,10 +260,10 @@ export const whatIsReModule: Module = {
           type: 'exercise',
           id: 'm1-ex-setup',
           title: 'Set up, then prove it works',
-          task: "Install 7-Zip and JDK 25, then Ghidra. Launch Ghidra once and let it finish creating a new project — do not analyse anything yet. Write down the version of each tool and where it lives on disk. Then answer: why bother writing that down?",
+          task: "Install 7-Zip and the JDK your Ghidra release asks for, then Ghidra. Launch Ghidra once and let it finish creating a new project — do not analyse anything yet. Write down the version of each tool and where it lives on disk. Then answer: why bother writing that down?",
           hint: 'Think about what happens in six weeks when a lab behaves differently from the lesson text.',
           answer:
-            "7-Zip 26.x — C:\\Program Files\\7-Zip\\7z.exe\nJDK 25 — confirmed with: java -version\nGhidra (current release) — unpacked to a path containing no spaces\n\nWritten down because: when a tool later disagrees with the lesson, the first question is always \"same version?\" and the second is \"which binary am I actually running?\". Having the answer to hand turns a confusing hour into a one-minute check.",
+            "7-Zip 26.x — C:\\Program Files\\7-Zip\\7z.exe\nJDK — version read from docs/GettingStarted.md in the release, confirmed with: java -version\nGhidra 12.1.3 — unpacked to a path containing no spaces\n\nWritten down because: when a tool later disagrees with the lesson, the first question is always \"same version?\" and the second is \"which binary am I actually running?\". Having the answer to hand turns a confusing hour into a one-minute check.",
           explanation: "The real lesson is a habit, not a list. Reverse engineering is full of results that depend on exact versions — a decompiler renders a function differently between releases, a compiler emits different code at a different optimisation level. Recording your environment makes your results reproducible, which is the difference between a finding and an anecdote.",
         },
       ],
@@ -391,7 +397,7 @@ export const whatIsReModule: Module = {
                 {
                   text: 'Your installed JDK is older than required',
                   correct: true,
-                  explanation: "Its README asks for JDK 25, 64-bit, and the failure rarely names Java clearly.",
+                  explanation: "Each release names its required JDK in its own GettingStarted.md, and the failure rarely names Java clearly.",
                 },
                 {
                   text: 'Your Ghidra project folder has not been made',

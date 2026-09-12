@@ -8,6 +8,7 @@ import { whatIsReModule } from './modules/01-what-is-re.ts';
 import { sourceToBinaryModule } from './modules/02-source-to-binary.ts';
 import { hexMemoryDataModule } from './modules/03-hex-memory-data.ts';
 import { x86AssemblyModule } from './modules/04-x86-64-assembly.ts';
+import { ghidraModule } from './modules/05-ghidra-static-analysis.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -22,6 +23,7 @@ export const MODULES: Module[] = [
   sourceToBinaryModule,
   hexMemoryDataModule,
   x86AssemblyModule,
+  ghidraModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {
