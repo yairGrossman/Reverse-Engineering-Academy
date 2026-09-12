@@ -1,0 +1,54 @@
+# Cloudflare Pages response headers. Cloudflare's format: a path pattern, then
+# indented `Header: value` lines. Limits are 100 rules and 2000 chars per line;
+# this file uses 4 rules. See DEPLOY.md for the deploy + verification steps.
+#
+# There is deliberately NO Access-Control-Allow-Origin header anywhere in this
+# file. Nothing on this origin serves an API, so its ABSENCE is the security
+# property — do not add one "for completeness".
+
+/*
+  # Report-only first: violations show up in the devtools console without
+  # breaking anything. Once the console is clean, comment this line out and
+  # uncomment the enforcing header below (they carry the identical policy).
+  Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  # Uncomment this (and comment out the report-only line above) after confirming zero violations.
+  # Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  #
+  # connect-src: 'none' is ready to ship NOW — the only fetch() in the app was
+  # HybridProgressStore's POST to the deleted dev endpoint, and
+  # `grep -rn "fetch(\|XMLHttpRequest\|WebSocket" src` is empty. It is left at
+  # 'self' for this first deploy purely so report-only cannot be blamed for a
+  # non-existent call; tighten it to 'none' in the same edit that enforces the
+  # policy, and "nothing is transmitted" becomes browser-enforced.
+  #
+  # img-src: `data:` may be unnecessary (the favicon is a served file and the
+  # illustrations are inline JSX SVG under default-src). Drop it and watch the
+  # report-only console before enforcing.
+  #
+  # No `preload` on HSTS: on a *.pages.dev subdomain the preload decision is
+  # Cloudflare's, not ours. Add it only with a custom apex we own.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  # frame-ancestors above is the real anti-framing control; this is for anything
+  # that does not implement CSP3.
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# Hashed filenames, so the content can never change under a given URL.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/index.html
+  Cache-Control: no-cache
+
+# Lab artifacts are content-addressed by name and never change under a given
+# filename (a rebuilt lab ships under a new name), so they cache like assets.
+# Deliberately no Content-Disposition or Content-Type here: Cloudflare's
+# _headers documentation does not state that those are honoured, and the
+# download is driven by the <a download> attribute instead, which is verified
+# in the browser before a lab ships.
+/labs/*
+  Cache-Control: public, max-age=31536000, immutable

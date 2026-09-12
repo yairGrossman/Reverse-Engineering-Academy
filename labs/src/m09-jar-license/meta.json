@@ -1,0 +1,8 @@
+{
+  "format": "JAR",
+  "zip": "m09-jar-license.zip",
+  "password": "reverse",
+  "sources": ["License.java"],
+  "artifactName": "license.jar",
+  "mainClass": "License"
+}

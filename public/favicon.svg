@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!--
+    Reverse Engineering Academy mark: Clawd in a construction hard hat.
+    Built to the same rules as src/components/ui/Clawd.tsx — axis-aligned
+    rects only, small rx, no curves, no strokes, no gradients. Clawd's fixed
+    colours: body #da7756, ink #0d0d0d; hard hat #f2b705 with a #d99106 ridge.
+    Ivory tile so the mark stays legible on dark browser tabs too.
+    Kept in sync with BrandMark in src/components/ui/Illustration.tsx.
+  -->
+  <rect width="128" height="128" rx="26" fill="#F0EEE6" />
+
+  <!-- hard hat: top ridge, dome, then the wide brim resting on the head -->
+  <rect x="56" y="12" width="16" height="8" rx="2" fill="#d99106" />
+  <rect x="34" y="19" width="60" height="17" rx="4" fill="#f2b705" />
+  <rect x="8" y="35" width="112" height="10" rx="3" fill="#f2b705" />
+
+  <!-- ears -->
+  <rect x="12" y="60" width="14" height="13" rx="2" fill="#da7756" />
+  <rect x="102" y="60" width="14" height="13" rx="2" fill="#da7756" />
+
+  <!-- body: ONE solid rectangle -->
+  <rect x="26" y="45" width="76" height="46" rx="4" fill="#da7756" />
+
+  <!-- 4 legs, centre gap wider than the outer gaps -->
+  <rect x="32" y="91" width="11" height="15" rx="2" fill="#da7756" />
+  <rect x="50" y="91" width="11" height="15" rx="2" fill="#da7756" />
+  <rect x="72" y="91" width="11" height="15" rx="2" fill="#da7756" />
+  <rect x="90" y="91" width="11" height="15" rx="2" fill="#da7756" />
+
+  <!-- square eyes -->
+  <rect x="41" y="60" width="13" height="13" fill="#0d0d0d" />
+  <rect x="76" y="60" width="13" height="13" fill="#0d0d0d" />
+</svg>

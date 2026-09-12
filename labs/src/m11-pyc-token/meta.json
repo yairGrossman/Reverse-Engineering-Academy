@@ -1,0 +1,6 @@
+{
+  "format": "PYC",
+  "zip": "m11-pyc-token.zip",
+  "password": "reverse",
+  "sources": ["token.py"]
+}

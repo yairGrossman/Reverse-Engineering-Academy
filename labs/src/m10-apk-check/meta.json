@@ -1,0 +1,9 @@
+{
+  "format": "APK",
+  "zip": "m10-apk-check.zip",
+  "password": "reverse",
+  "sources": ["java/com/reacademy/lab/Check.java"],
+  "artifactName": "check.apk",
+  "minApi": 21,
+  "targetApi": 36
+}

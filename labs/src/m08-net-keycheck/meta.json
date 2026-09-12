@@ -1,0 +1,7 @@
+{
+  "format": "NET",
+  "zip": "m08-net-keycheck.zip",
+  "password": "reverse",
+  "project": "keycheck.csproj",
+  "artifactName": "keycheck.dll"
+}

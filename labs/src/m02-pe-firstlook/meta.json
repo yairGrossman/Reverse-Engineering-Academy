@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m02-pe-firstlook.zip",
+  "password": "reverse",
+  "sources": ["firstlook.c"],
+  "artifactName": "firstlook.exe",
+  "flags": ["-O1"],
+  "strip": false
+}

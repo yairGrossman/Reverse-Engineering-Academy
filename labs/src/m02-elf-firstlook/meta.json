@@ -1,0 +1,8 @@
+{
+  "format": "ELF",
+  "zip": "m02-elf-firstlook.zip",
+  "password": "reverse",
+  "sources": ["../m02-pe-firstlook/firstlook.c"],
+  "artifactName": "firstlook",
+  "flags": ["-O1"]
+}
