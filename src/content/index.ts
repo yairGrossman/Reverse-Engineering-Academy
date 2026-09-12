@@ -9,6 +9,7 @@ import { sourceToBinaryModule } from './modules/02-source-to-binary.ts';
 import { hexMemoryDataModule } from './modules/03-hex-memory-data.ts';
 import { x86AssemblyModule } from './modules/04-x86-64-assembly.ts';
 import { ghidraModule } from './modules/05-ghidra-static-analysis.ts';
+import { dynamicAnalysisModule } from './modules/06-dynamic-analysis.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -24,6 +25,7 @@ export const MODULES: Module[] = [
   hexMemoryDataModule,
   x86AssemblyModule,
   ghidraModule,
+  dynamicAnalysisModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {

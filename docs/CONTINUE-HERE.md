@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 5 of 14 |
-| Lessons | 18 |
-| Quiz questions | 43 |
-| Labs wired into lessons | 6 (PE, ELF, PE, ELF, PE, PE) |
-| Lab artifacts built | 10 |
+| Modules written | 6 of 14 |
+| Lessons | 22 |
+| Quiz questions | 53 |
+| Labs wired into lessons | 7 (PE, ELF, PE, ELF, PE, PE, PE) |
+| Lab artifacts built | 11 |
 
-Modules 1–5 are done. Four more artifacts already build and are waiting for their modules:
+Modules 1–6 are done. Four more artifacts already build and are waiting for their modules:
 `m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
@@ -68,6 +68,8 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | MS x64 calling convention | `learn.microsoft.com/cpp/build/x64-calling-convention` | RCX/RDX/R8/R9, RAX return, volatile vs nonvolatile, 32-byte shadow store | msvc-170, page updated 2026-05-21 |
 | Ghidra, **installed here** | `C:\Users\yairg\tools\ghidra_12.1.3_PUBLIC` | `docs/GettingStarted.md` (Java 21 requirement, JAVA_HOME precedence), `docs/languages/html/pcoderef.html` (p-code definition), `support/analyzeHeadlessREADME.md` | 12.1.3, build 2026-Aug-17 — the release's own docs, so exact-case |
 | FNV hash | `isthe.com/chongo/tech/comp/fnv/index.html` | 32-bit offset basis 0x811C9DC5, prime 0x01000193, FNV-1a XORs before multiplying | names the m05 lab's second gate |
+| GDB manual | `sourceware.org/gdb/current/onlinedocs/gdb.html/` → `Registers.html`, `Memory.html` | `info registers` scope, `$` register syntax, `x/nfu` formats and unit sizes | current manual; the page does not state a version, so behaviour was measured against local gdb 16.3 |
+| x64dbg docs | `help.x64dbg.com/en/latest/commands/` → `breakpoint-control`, `debug-control` | SetBPX/bp, SetHardwareBreakpoint/bph, SetMemoryBPX/bpm, run/go, StepInto/sti, StepOver/sto, StepOut/rtr, StopDebug | command reference only — the intro page returns just a TOC, so NOTHING about the GUI or versions is claimed |
 
 ## Sources that FAILED the validity test
 
@@ -92,8 +94,9 @@ the bad source. The remediation is owed by the module named.
 5. **Intel SDM volume numbering** — the landing page was loose about which volume covers general
    registers versus MSRs. → **Discharged for module 4:** Vol. 1 (253665-092US, June 2026) and
    Vol. 2A (253666-092US, June 2026) were downloaded and quoted from directly; both PDFs convert
-   cleanly with `pdftotext -layout`, which is how the tables were read. **Still owed by module 6**
-   for the flags chapter — open the volume, never the landing page.
+   cleanly with `pdftotext -layout`, which is how the tables were read. **Discharged for module 6** as well: the
+   flags material reuses the Vol. 1 sections module 4 quoted, and every debugger
+   fact in module 6 is either GDB-manual text or measured output from gdb 16.3.
 
 ## Corrected while writing module 5
 
@@ -121,7 +124,6 @@ it into `labs/` tooling if a later module needs the same.
 
 | Module | Documents | Notes |
 |---|---|---|
-| 6 · Dynamic analysis | x64dbg docs; the GNU GDB manual | Measure real command output on this machine. |
 | 7 · PE and ELF formats | The two format docs above, chapters on sections and imports | Verify RVA-to-file-offset arithmetic against a real artifact with `objdump`. |
 | 12 · Obfuscation and packing | UPX docs; vendor docs per technique covered | Teach detection, not evasion. |
 | 13 · Patching and instrumentation | Frida documentation | |
@@ -129,7 +131,7 @@ it into `labs/` tooling if a later module needs the same.
 
 ## Labs still to build
 
-Modules 6, 7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Modules 7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -211,7 +213,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 3 | Hex, Memory & Data | stripped PE — done |
 | 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
 | | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
-| | 6 | Dynamic Analysis — x64dbg and gdb | PE |
+| | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
 | | 7 | PE and ELF File Formats | PE + ELF |
 | 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE (**already built**) |
 | | 9 | Java — class format, JVM bytecode | JAR (**already built**) |

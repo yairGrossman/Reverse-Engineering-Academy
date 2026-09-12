@@ -54,6 +54,12 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-12T23:22:56.685Z',
   },
+  "m06-pe-unlock.zip": {
+    sha256: '7b8c9564915029863755f97a2772a6c5fcf6bdb45971bae2c8f0df40ce9659ae',
+    bytes: 41836,
+    format: 'PE',
+    builtAt: '2026-09-12T23:34:23.317Z',
+  },
   "m08-net-keycheck.zip": {
     sha256: '7e5b7605fbc8446727b92810d29dd7bec61166c3e394016608ddbf0214bd62de',
     bytes: 2281,
