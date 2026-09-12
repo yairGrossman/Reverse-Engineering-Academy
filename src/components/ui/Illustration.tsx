@@ -131,6 +131,7 @@ export function BrandMark({ size = 26 }: { size?: number }) {
   const INK = '#0d0d0d';
   const HAT = '#f2b705';
   const HAT_RIDGE = '#d99106';
+  const HAT_LIGHT = '#ffd23f';
   return (
     <svg
       className="art art--brand"
@@ -140,10 +141,17 @@ export function BrandMark({ size = 26 }: { size?: number }) {
       aria-hidden="true"
       focusable="false"
     >
-      {/* hard hat: top ridge, dome, then the wide brim resting on the head */}
-      <rect x="56" y="12" width="16" height="8" rx="2" fill={HAT_RIDGE} />
-      <rect x="34" y="19" width="60" height="17" rx="4" fill={HAT} />
-      <rect x="8" y="35" width="112" height="10" rx="3" fill={HAT} />
+      {/* hard hat: tall stepped dome (axis-aligned rects only, no curves) with a
+          centre ridge, over a short thick brim that overhangs the dome by only a
+          few units. Row widths widen fast then slow so the shoulder reads round
+          rather than conical; a wide thin brim would read as a sun hat. */}
+      <rect x="46" y="7" width="36" height="6" rx="3" fill={HAT} />
+      <rect x="37" y="12" width="54" height="8" fill={HAT} />
+      <rect x="31" y="19" width="66" height="9" fill={HAT} />
+      <rect x="28" y="27" width="72" height="10" fill={HAT} />
+      <rect x="57" y="7" width="14" height="30" fill={HAT_LIGHT} />
+      <rect x="22" y="36" width="84" height="12" rx="3" fill={HAT} />
+      <rect x="22" y="43" width="84" height="5" rx="2" fill={HAT_RIDGE} />
       {/* ears */}
       <rect x="12" y="60" width="14" height="13" rx="2" fill={BODY} />
       <rect x="102" y="60" width="14" height="13" rx="2" fill={BODY} />

@@ -9,10 +9,17 @@
   -->
   <rect width="128" height="128" rx="26" fill="#F0EEE6" />
 
-  <!-- hard hat: top ridge, dome, then the wide brim resting on the head -->
-  <rect x="56" y="12" width="16" height="8" rx="2" fill="#d99106" />
-  <rect x="34" y="19" width="60" height="17" rx="4" fill="#f2b705" />
-  <rect x="8" y="35" width="112" height="10" rx="3" fill="#f2b705" />
+  <!-- hard hat: tall stepped dome (axis-aligned rects only, no curves) with a
+       centre ridge, over a short thick brim that overhangs the dome by only a
+       few units. Row widths widen fast then slow so the shoulder reads round
+       rather than conical; a wide thin brim would read as a sun hat. -->
+  <rect x="46" y="7" width="36" height="6" rx="3" fill="#f2b705" />
+  <rect x="37" y="12" width="54" height="8" fill="#f2b705" />
+  <rect x="31" y="19" width="66" height="9" fill="#f2b705" />
+  <rect x="28" y="27" width="72" height="10" fill="#f2b705" />
+  <rect x="57" y="7" width="14" height="30" fill="#ffd23f" />
+  <rect x="22" y="36" width="84" height="12" rx="3" fill="#f2b705" />
+  <rect x="22" y="43" width="84" height="5" rx="2" fill="#d99106" />
 
   <!-- ears -->
   <rect x="12" y="60" width="14" height="13" rx="2" fill="#da7756" />

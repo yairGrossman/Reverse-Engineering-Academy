@@ -23,6 +23,7 @@ const BODY = '#da7756';
 const EYE = '#0d0d0d';
 const HAT = '#f2b705';
 const HAT_RIDGE = '#d99106';
+const HAT_LIGHT = '#ffd23f';
 
 export function Clawd() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -65,16 +66,23 @@ export function Clawd() {
       <svg
         ref={svgRef}
         className="clawd__svg"
-        viewBox="0 -26 120 118"
+        viewBox="0 -34 120 126"
         width="170"
-        height="167"
+        height="179"
         role="img"
         aria-label="Clawd the crab in a hard hat, Reverse Engineering Academy mascot"
       >
-        {/* hard hat: top ridge, dome, wide brim resting on the head */}
-        <rect x="54" y="-25" width="12" height="6" rx="2" fill={HAT_RIDGE} />
-        <rect x="34" y="-19" width="52" height="15" rx="4" fill={HAT} />
-        <rect x="10" y="-4" width="100" height="10" rx="3" fill={HAT} />
+        {/* hard hat: tall stepped dome (axis-aligned rects only, no curves) with a
+            centre ridge, over a short thick brim that overhangs the dome by only a
+            few units. Row widths widen fast then slow so the shoulder reads round
+            rather than conical; a wide thin brim would read as a sun hat. */}
+        <rect x="43" y="-33" width="34" height="6" rx="3" fill={HAT} />
+        <rect x="35" y="-28" width="50" height="8" fill={HAT} />
+        <rect x="29" y="-21" width="62" height="9" fill={HAT} />
+        <rect x="26" y="-13" width="68" height="10" fill={HAT} />
+        <rect x="53" y="-33" width="14" height="30" fill={HAT_LIGHT} />
+        <rect x="20" y="-4" width="80" height="12" rx="3" fill={HAT} />
+        <rect x="20" y="3" width="80" height="5" rx="2" fill={HAT_RIDGE} />
 
         {/* left ear */}
         <g className="clawd__claw">
