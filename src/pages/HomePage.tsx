@@ -20,14 +20,14 @@ export function HomePage() {
 
         <Clawd />
         <h1 className="home__title">
-          Become a professional
+          Take any binary
           <br />
-          <span className="gradient-text">AI engineer</span>
+          <span className="gradient-text">apart</span>
         </h1>
         <p className="home__subtitle">
-          A complete course on Claude Code, prompt engineering, and working with LLMs — from
-          your first prompt to multi-agent workflows. Concepts, real examples, and exercises
-          with model answers in every module.
+          A complete course on reverse engineering, from your first hex dump to unpacking
+          and instrumentation. Native code, .NET, Java, Android and Python — every module
+          ends with real compiled binaries to download and take apart yourself.
         </p>
         {done > 0 && (
           <p className="home__resume">

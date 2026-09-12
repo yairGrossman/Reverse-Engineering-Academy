@@ -156,7 +156,11 @@ if (problems.length > 0) {
   console.error(`\nQuiz lint FAILED — ${problems.length} problem(s):\n`);
   for (const p of problems) console.error(`  - ${p}`);
   console.error('');
-  process.exit(1);
+  process.exitCode = 1;
 }
 
-console.log(`Quiz lint passed: ${quizCount} question(s), ${labCount} lab(s), ${ids.size} unique id(s).`);
+if (problems.length === 0) {
+  console.log(
+    `Quiz lint passed: ${quizCount} question(s), ${labCount} lab(s), ${ids.size} unique id(s).`,
+  );
+}

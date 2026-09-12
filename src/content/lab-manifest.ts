@@ -30,6 +30,12 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-12T13:18:58.744Z',
   },
+  "m03-pe-xorsecret.zip": {
+    sha256: '9262422d8539866f1377789e447067e7b798d90f6bf9e935ba8dff96b869e45c',
+    bytes: 6750,
+    format: 'PE',
+    builtAt: '2026-09-12T13:27:10.072Z',
+  },
   "m08-net-keycheck.zip": {
     sha256: '7e5b7605fbc8446727b92810d29dd7bec61166c3e394016608ddbf0214bd62de',
     bytes: 2281,

@@ -23,7 +23,7 @@ export function Sidebar({ open, onNavigate }: Props) {
       <NavLink to="/" className="sidebar__logo" onClick={onNavigate}>
         <BrandMark size={26} />
         <span>
-          <span className="gradient-text">Claude Code</span>&nbsp;Academy
+          <span className="gradient-text">Reverse</span>&nbsp;Engineering
         </span>
       </NavLink>
 

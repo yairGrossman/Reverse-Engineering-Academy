@@ -4,6 +4,9 @@
  * import here. Nothing else in the app changes (Open/Closed).
  */
 import type { LabBlock, Module, Part, QuizBlock } from '../types/content';
+import { whatIsReModule } from './modules/01-what-is-re.ts';
+import { sourceToBinaryModule } from './modules/02-source-to-binary.ts';
+import { hexMemoryDataModule } from './modules/03-hex-memory-data.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -13,7 +16,7 @@ export const PARTS: Part[] = [
   { number: 5, title: 'Mastery' },
 ];
 
-export const MODULES: Module[] = [];
+export const MODULES: Module[] = [whatIsReModule, sourceToBinaryModule, hexMemoryDataModule];
 
 export function getModule(moduleId: string): Module | undefined {
   return MODULES.find((m) => m.id === moduleId);

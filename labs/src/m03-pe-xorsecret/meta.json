@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m03-pe-xorsecret.zip",
+  "password": "reverse",
+  "sources": ["xorsecret.c"],
+  "artifactName": "xorsecret.exe",
+  "flags": ["-O1"],
+  "strip": true
+}
