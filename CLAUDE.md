@@ -1,6 +1,9 @@
 # Reverse Engineering Academy
 
-Interactive learning site: reverse engineering from zero to mastery. Vite + React 19 + TS strict, static SPA, no backend. Built from the `claude-code-academy` codebase and keeps its architecture.
+Interactive learning site: reverse engineering from zero to mastery. Vite + React 19 + TS strict, static SPA, no backend. Built from the `claude-code-academy` codebase, keeps its architecture.
+
+> **Continuing the course (writing modules 4–14)? Read `docs/CONTINUE-HERE.md` first.**
+> It holds the authoring recipe, the per-module research plan, the sources already verified, the ones that FAILED verification, and the decisions not to re-litigate. This file is only the standing rules. `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
 
 ## Commands
 - Dev: `npm run dev` (port 5173)
@@ -9,13 +12,19 @@ Interactive learning site: reverse engineering from zero to mastery. Vite + Reac
 - Lint: `npm run lint` (oxlint **+ the quiz-quality gate**)
 - Labs: `npm run labs:build` (all) or `npm run labs:build <lab-id>` (one)
 
+## Where the project stands
+- **Written:** Part 1 — modules 1–3, 10 lessons, 23 questions, 3 labs wired into lessons.
+- **Not written:** modules 4–14.
+- **Lab pipeline:** complete, proven for all six formats.
+- **Built but not yet used by any lesson:** `m08-net-keycheck`, `m09-jar-license`, `m10-apk-check`, `m11-pyc-token` — sources in `labs/src/`, artifacts in `public/labs/`. The module that will use each one is named in its id.
+
 ## Architecture
-- **Content is data**: modules live in `src/content/modules/*.ts` as typed `Module` objects. Adding a module = new data file + import in `src/content/index.ts`. Never hardcode lesson content in components. Module files import each other with an explicit `.ts` extension (`./modules/01-what-is-re.ts`) — required so Node can run `scripts/lint-quizzes.ts` directly against the same content the site bundles.
-- Rendering: `src/components/blocks/BlockRenderer.tsx` maps `block.type -> component` via a typed registry. New block type = extend the union in `src/types/content.ts` + one registry entry (compile error if missed).
-- Progress: components use `useProgress()` only. `LocalStorageProgressStore` (`src/services/progress.ts`) is the ONLY store — localStorage key `rea-progress-v1`, never renamed (the schema version lives inside the value, in a `{app, version, exportedAt, data}` envelope). **No network call of any kind** — keep `connect-src` closed in `public/_headers`. Cross-device transfer is the visitor's manual export/import. `parseProgressJson` is the single validation gate on BOTH the load and the import path.
+- **Content is data**: modules live in `src/content/modules/*.ts` as typed `Module` objects. Adding a module = new data file + import in `src/content/index.ts`. Never hardcode lesson content in components. Module files import with an explicit `.ts` extension — required so Node can run `scripts/lint-quizzes.ts` against the same content the site bundles.
+- Rendering: `src/components/blocks/BlockRenderer.tsx` maps `block.type -> component` via a typed registry. New block type = extend the union in `src/types/content.ts` + one registry entry (compile error if missed). Existing types: `prose`, `heading`, `list`, `code`, `callout`, `comparison`, `exercise`, `quiz`, `quiz-set`, `lab`, `table`.
+- Progress: components use `useProgress()` only. `LocalStorageProgressStore` (`src/services/progress.ts`) is the ONLY store — localStorage key `rea-progress-v1`, never renamed (the schema version lives inside the value, in a `{app, version, exportedAt, data}` envelope). **No network call of any kind** — keep `connect-src 'none'` in `public/_headers`. Cross-device transfer is the visitor's manual export/import. `parseProgressJson` is the single validation gate on BOTH the load and the import path.
 - Styles: design tokens in `src/styles/tokens.css`. SINGLE light theme — no dark mode. Never hardcode colors in components or CSS — use tokens. ONE exception: `Clawd.tsx` (mascot keeps fixed colors).
 - Iconography/art: **NO EMOJI anywhere in UI or content**. UI symbols come from `src/components/ui/Icon.tsx`; decorative artwork from `src/components/ui/Illustration.tsx`.
-- Logo: **Clawd in a yellow construction hard hat**. `BrandMark` (`Illustration.tsx`) and `public/favicon.svg` are ONE logo, same 128 viewBox and same rect coordinates — edit both together. `Clawd.tsx` (the hero mascot) carries the same hat in negative-y headroom (`viewBox="0 -26 120 118"`) so the original body coordinates were never touched. Axis-aligned rects only, small `rx`, no curves/strokes/gradients; fixed colours `#da7756` body, `#0d0d0d` ink, `#f2b705` hat with `#d99106` ridge. Bump `?v=` on the `<link rel="icon">` in `index.html` whenever the icon changes.
+- Logo: **Clawd in a yellow construction hard hat**. `BrandMark` (`Illustration.tsx`) and `public/favicon.svg` are ONE logo, same 128 viewBox and same rect coordinates — edit both together. `Clawd.tsx` (the hero mascot) carries the same hat in negative-y headroom so the original body coordinates were never touched. Axis-aligned rects only, small `rx`, no curves/strokes/gradients; fixed colours `#da7756` body, `#0d0d0d` ink, `#f2b705` hat, `#d99106` ridge. The dome is stepped with **shrinking width deltas (+18/+10/+6)** so it reads round rather than conical, and the brim is short — a wide thin brim reads as a sun hat, which two earlier attempts did. Bump `?v=` on the `<link rel="icon">` in `index.html` whenever the icon changes.
 
 ## The two rules that make this course different
 
@@ -30,17 +39,17 @@ The course this is built from had a real flaw: the correct option was reliably t
 When writing questions: keep every option in the same length band and register, and make each distractor a mistake a real learner makes. Expect the linter to push back on your first draft — it pushed back on every module written so far. **Fix the question, never the threshold.**
 
 ### 2. No technical claim from memory
-Every module file opens with a `SOURCES` comment listing what was actually fetched or measured while writing it. Format facts come from the format's own specification (PE: learn.microsoft.com; ELF: System V gABI; class files: JVMS for the JDK in use; dex: source.android.com; CIL: ECMA-335). Behavioural facts are **measured on this machine** and the measurement is quoted. Lab answers are read off the built artifact by running it or the named tool — never recalled. If a source does not cover the exact case, the lesson stops and says so rather than guessing.
+Every module file opens with a `SOURCES` comment listing what was actually fetched or measured while writing it. Format facts come from the format's own specification (PE: learn.microsoft.com; ELF: System V gABI; class files: JVMS for the JDK in use; dex: source.android.com; CIL: ECMA-335). Behavioural facts are **measured on this machine** and the measurement is quoted. Lab answers are read off the built artifact by running it or the named tool — never recalled. If a source does not cover the exact case, the lesson stops and says so rather than guessing. `docs/CONTINUE-HERE.md` lists which sources already passed this test and which failed it.
 
 ## Labs (the binary exercises)
 - Sources in `labs/src/<lab-id>/` with a `meta.json`; `labs/build.mjs` compiles, verifies, packages and records.
-- Six formats work end to end: `PE` (mingw gcc), `ELF` (`zig cc -target x86_64-linux-gnu`), `NET` (dotnet), `JAR` (javac+jar), `APK` (javac → d8 → aapt2 → zipalign → apksigner, **no Gradle**), `PYC` (compileall).
+- Six formats work end to end: `PE` (mingw gcc), `ELF` (`zig cc -target x86_64-linux-gnu`), `NET` (dotnet), `JAR` (javac+jar), `APK` (javac to d8 to aapt2 to zipalign to apksigner, **no Gradle**), `PYC` (compileall).
 - Every artifact is format-checked before shipping, using magic values from each spec. **DEX version digits vary with `--min-api`** (d8 emits `dex\n035\0` at api 21, not the `039` in the docs) — the check accepts any three-digit version. Do not pin one.
 - Node cannot spawn `.bat` directly, so the Android wrappers are bypassed: `java -cp lib/d8.jar com.android.tools.r8.D8` and `java -jar lib/apksigner.jar`. Both entry points were read out of the shipped tools.
 - Packaging is **ZipCrypto, not AES** — measured: an AES zip cannot be opened by Info-ZIP `unzip` ("need PK compat. v5.1") nor Python's `zipfile`, while ZipCrypto opens in 7-Zip, `unzip` and `zipfile` alike. The password is published in the lesson; it exists to stop antivirus quarantine, not to protect anything.
 - `src/content/lab-manifest.ts` is **generated** — never hand-edit. Sizes and hashes come from the artifact the build actually produced, so content can never quote a stale hash.
 - `public/labs/*.zip` **are committed**: the deploy host has no compilers.
-- Tool paths in `build.mjs` are overridable by env (`REA_ZIG`, `REA_7Z`, `ANDROID_SDK_ROOT`, …) for a different machine.
+- Tool paths in `build.mjs` are overridable by env: `REA_GCC`, `REA_GXX`, `REA_ZIG`, `REA_DOTNET`, `REA_JAVA`, `REA_JAVAC`, `REA_JAR`, `REA_KEYTOOL`, `REA_PYTHON`, `REA_STRIP`, `REA_7Z`, `REA_BUILD_TOOLS`, `REA_ANDROID_PLATFORM`, `ANDROID_SDK_ROOT`.
 
 ## Conventions
 - TypeScript only, strict mode. No `any`.
@@ -57,3 +66,4 @@ Every module file opens with a `SOURCES` comment listing what was actually fetch
 - Each module's last lesson is a `practice-lab` (a `quiz-set`, one or more `lab` blocks, open exercises) — keep that convention.
 - The desktop browser pane renders these pages blank in screenshots (a known style-recalc/IntersectionObserver bug). Verify visuals in a real browser; use DOM/JS checks in the pane, which work fine.
 - WSL on the build machine is broken (`Wsl/CallMsi/Install/REGDB_E_CLASSNOTREG`) and is deliberately not used — Zig provides ELF cross-compilation instead.
+- README claims are verified mechanically before committing (TOC anchors resolve, relative links exist, short description under 120 chars, Licence is the final section). Keep it that way.
