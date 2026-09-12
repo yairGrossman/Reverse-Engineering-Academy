@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 4 of 14 |
-| Lessons | 14 |
-| Quiz questions | 33 |
-| Labs wired into lessons | 5 (PE, ELF, PE, ELF, PE) |
-| Lab artifacts built | 9 |
+| Modules written | 5 of 14 |
+| Lessons | 18 |
+| Quiz questions | 43 |
+| Labs wired into lessons | 6 (PE, ELF, PE, ELF, PE, PE) |
+| Lab artifacts built | 10 |
 
-Modules 1–4 are done. Four more artifacts already build and are waiting for their modules:
+Modules 1–5 are done. Four more artifacts already build and are waiting for their modules:
 `m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
@@ -66,6 +66,8 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | Intel SDM **Vol. 2A** | `cdrdv2.intel.com/v1/dl/getContent/671199` | CMP p. 3-161, Jcc p. 3-502 (signed vs unsigned wording) | Order 253666-**092US**, June 2026 |
 | System V AMD64 psABI | `gitlab.com/x86-psABIs/x86-64-ABI` → `x86-64-ABI/low-level-sys-info.tex` | arg registers RDI/RSI/RDX/RCX/r8/r9, Register Usage figure, 128-byte red zone | master, last commit 2025-03-12 — the wiki PDF link is JS-only, read the `.tex` |
 | MS x64 calling convention | `learn.microsoft.com/cpp/build/x64-calling-convention` | RCX/RDX/R8/R9, RAX return, volatile vs nonvolatile, 32-byte shadow store | msvc-170, page updated 2026-05-21 |
+| Ghidra, **installed here** | `C:\Users\yairg\tools\ghidra_12.1.3_PUBLIC` | `docs/GettingStarted.md` (Java 21 requirement, JAVA_HOME precedence), `docs/languages/html/pcoderef.html` (p-code definition), `support/analyzeHeadlessREADME.md` | 12.1.3, build 2026-Aug-17 — the release's own docs, so exact-case |
+| FNV hash | `isthe.com/chongo/tech/comp/fnv/index.html` | 32-bit offset basis 0x811C9DC5, prime 0x01000193, FNV-1a XORs before multiplying | names the m05 lab's second gate |
 
 ## Sources that FAILED the validity test
 
@@ -93,11 +95,32 @@ the bad source. The remediation is owed by the module named.
    cleanly with `pdftotext -layout`, which is how the tables were read. **Still owed by module 6**
    for the flags chapter — open the volume, never the landing page.
 
+## Corrected while writing module 5
+
+**Module 1 told learners to install JDK 25 for Ghidra. That was the wrong case.** The figure came
+from the GitHub master README, which tracks building Ghidra from source. The release a learner
+downloads — 12.1.3 — states **Java 21** in its own `docs/GettingStarted.md` line 54. Module 1 now
+cites the release doc and warns that the README number is for source builds. Recheck whenever the
+Ghidra version moves: read `GettingStarted.md` inside the version you unpacked, never the repo
+README.
+
+**Now installed on this machine** (both missing when this handoff was first written): Ghidra 12.1.3
+at `C:\Users\yairg\tools\ghidra_12.1.3_PUBLIC`, and JDK 25 next to the existing JDK 21. Ghidra runs headless with `JAVA_HOME` pointed
+at the **21** tree. The invocation that produced module 5's listings:
+
+```bash
+JAVA_HOME=<jdk-21 dir> support/analyzeHeadless.bat <existing-project-dir> NAME   -import <file> -scriptPath <dir> -postScript DumpDecompile.java -deleteProject
+```
+
+The project directory must exist first — Ghidra aborts with `Directory not found` rather than
+creating it. `DumpDecompile.java` is a GhidraScript that walks every function through
+`DecompInterface` and prints the C; it is the reason module 5 quotes real decompiler output. Promote
+it into `labs/` tooling if a later module needs the same.
+
 ## Still to fetch, when that module is written
 
 | Module | Documents | Notes |
 |---|---|---|
-| 5 · Ghidra | Ghidra's own docs and help | Describe the workflow in text; UI screenshots go stale. |
 | 6 · Dynamic analysis | x64dbg docs; the GNU GDB manual | Measure real command output on this machine. |
 | 7 · PE and ELF formats | The two format docs above, chapters on sections and imports | Verify RVA-to-file-offset arithmetic against a real artifact with `objdump`. |
 | 12 · Obfuscation and packing | UPX docs; vendor docs per technique covered | Teach detection, not evasion. |
@@ -106,7 +129,7 @@ the bad source. The remediation is owed by the module named.
 
 ## Labs still to build
 
-Modules 5–7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Modules 6, 7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -187,7 +210,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 2 | How Source Becomes a Binary | PE + ELF from one source — done |
 | | 3 | Hex, Memory & Data | stripped PE — done |
 | 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
-| | 5 | Static Analysis with Ghidra | PE |
+| | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
 | | 6 | Dynamic Analysis — x64dbg and gdb | PE |
 | | 7 | PE and ELF File Formats | PE + ELF |
 | 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE (**already built**) |
