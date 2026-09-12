@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 3 of 14 |
-| Lessons | 10 |
-| Quiz questions | 23 |
-| Labs wired into lessons | 3 (PE, ELF, PE) |
-| Lab artifacts built | 7 |
+| Modules written | 4 of 14 |
+| Lessons | 14 |
+| Quiz questions | 33 |
+| Labs wired into lessons | 5 (PE, ELF, PE, ELF, PE) |
+| Lab artifacts built | 9 |
 
-Modules 1–3 are done. Four more artifacts already build and are waiting for their modules:
+Modules 1–4 are done. Four more artifacts already build and are waiting for their modules:
 `m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
@@ -62,6 +62,10 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | Android cmdline-tools | `developer.android.com/studio` | `commandlinetools-win-15859902_latest.zip`, SHA-256 `90ae805d…fb04a` | Official |
 | Ghidra · x64dbg · jadx · ILSpy · CFR | `github.com/NationalSecurityAgency/ghidra` · `x64dbg.com` · `github.com/skylot/jadx` · `github.com/icsharpcode/ILSpy` · `github.com/leibnitz27/cfr` | licences, capabilities, entry points | Cited in module 1 |
 | gcc 15.2.0 · Python 3.14 · .NET 10.0.401 | local `--help` output | accepted flags | **Exact binaries in use** |
+| Intel SDM **Vol. 1** | `cdrdv2.intel.com/v1/dl/getContent/671436` | Sec. 3.4.1.1 registers, Table 3-2 widths, Sec. 3.4.3.1 flag bits, App. B condition codes | Order 253665-**092US**, June 2026 |
+| Intel SDM **Vol. 2A** | `cdrdv2.intel.com/v1/dl/getContent/671199` | CMP p. 3-161, Jcc p. 3-502 (signed vs unsigned wording) | Order 253666-**092US**, June 2026 |
+| System V AMD64 psABI | `gitlab.com/x86-psABIs/x86-64-ABI` → `x86-64-ABI/low-level-sys-info.tex` | arg registers RDI/RSI/RDX/RCX/r8/r9, Register Usage figure, 128-byte red zone | master, last commit 2025-03-12 — the wiki PDF link is JS-only, read the `.tex` |
+| MS x64 calling convention | `learn.microsoft.com/cpp/build/x64-calling-convention` | RCX/RDX/R8/R9, RAX return, volatile vs nonvolatile, 32-byte shadow store | msvc-170, page updated 2026-05-21 |
 
 ## Sources that FAILED the validity test
 
@@ -84,14 +88,15 @@ the bad source. The remediation is owed by the module named.
    standard may be silent on newer additions. → **Owed by module 8:** also fetch
    `docs/design/specs/Ecma-335-Augments.md` from the `dotnet/runtime` repository, and cite both.
 5. **Intel SDM volume numbering** — the landing page was loose about which volume covers general
-   registers versus MSRs. → **Owed by modules 4 and 6:** open the actual volume and cite it,
-   never the landing page.
+   registers versus MSRs. → **Discharged for module 4:** Vol. 1 (253665-092US, June 2026) and
+   Vol. 2A (253666-092US, June 2026) were downloaded and quoted from directly; both PDFs convert
+   cleanly with `pdftotext -layout`, which is how the tables were read. **Still owed by module 6**
+   for the flags chapter — open the volume, never the landing page.
 
 ## Still to fetch, when that module is written
 
 | Module | Documents | Notes |
 |---|---|---|
-| 4 · x86-64 assembly | System V AMD64 psABI; Microsoft x64 calling convention | Both matter — the course ships PE *and* ELF labs. Plus Intel SDM Vol. 2, per failure 5. |
 | 5 · Ghidra | Ghidra's own docs and help | Describe the workflow in text; UI screenshots go stale. |
 | 6 · Dynamic analysis | x64dbg docs; the GNU GDB manual | Measure real command output on this machine. |
 | 7 · PE and ELF formats | The two format docs above, chapters on sections and imports | Verify RVA-to-file-offset arithmetic against a real artifact with `objdump`. |
@@ -101,7 +106,7 @@ the bad source. The remediation is owed by the module named.
 
 ## Labs still to build
 
-Modules 4–7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Modules 5–7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -181,7 +186,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | 1 Foundations | 1 | What RE Is — legality, ethics, workflow, toolbox | none (setup checks) — done |
 | | 2 | How Source Becomes a Binary | PE + ELF from one source — done |
 | | 3 | Hex, Memory & Data | stripped PE — done |
-| 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF |
+| 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
 | | 5 | Static Analysis with Ghidra | PE |
 | | 6 | Dynamic Analysis — x64dbg and gdb | PE |
 | | 7 | PE and ELF File Formats | PE + ELF |

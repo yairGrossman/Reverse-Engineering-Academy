@@ -7,6 +7,7 @@ import type { LabBlock, Module, Part, QuizBlock } from '../types/content';
 import { whatIsReModule } from './modules/01-what-is-re.ts';
 import { sourceToBinaryModule } from './modules/02-source-to-binary.ts';
 import { hexMemoryDataModule } from './modules/03-hex-memory-data.ts';
+import { x86AssemblyModule } from './modules/04-x86-64-assembly.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -16,7 +17,12 @@ export const PARTS: Part[] = [
   { number: 5, title: 'Mastery' },
 ];
 
-export const MODULES: Module[] = [whatIsReModule, sourceToBinaryModule, hexMemoryDataModule];
+export const MODULES: Module[] = [
+  whatIsReModule,
+  sourceToBinaryModule,
+  hexMemoryDataModule,
+  x86AssemblyModule,
+];
 
 export function getModule(moduleId: string): Module | undefined {
   return MODULES.find((m) => m.id === moduleId);

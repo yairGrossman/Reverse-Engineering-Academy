@@ -36,6 +36,18 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-12T13:27:10.072Z',
   },
+  "m04-elf-keygate.zip": {
+    sha256: '08cb25c4e3f70d9565707d0a10005ca74c44bf78522d7a69a6419908f20e6378',
+    bytes: 3302,
+    format: 'ELF',
+    builtAt: '2026-09-12T23:01:13.259Z',
+  },
+  "m04-pe-keygate.zip": {
+    sha256: '22463b1b1b9363bffe5b5dcfdb9b4c07dea33b234145fa2ef0c3e5c1a6cce06b',
+    bytes: 40687,
+    format: 'PE',
+    builtAt: '2026-09-12T23:02:46.414Z',
+  },
   "m08-net-keycheck.zip": {
     sha256: '7e5b7605fbc8446727b92810d29dd7bec61166c3e394016608ddbf0214bd62de',
     bytes: 2281,
