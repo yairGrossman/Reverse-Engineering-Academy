@@ -11,15 +11,14 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 10 of 14 |
-| Lessons | 38 |
-| Quiz questions | 90 |
-| Labs wired into lessons | 14 across modules 2–10 |
+| Modules written | 11 of 14 |
+| Lessons | 42 |
+| Quiz questions | 99 |
+| Labs wired into lessons | 15 across modules 2–11 |
 | Lab artifacts built | 15 (all now used) |
 
-Modules 1–10 are done. Four more artifacts already build and are waiting for their modules:
-`m11-pyc-token`
-(PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
+Modules 1–11 are done. Parts 1–3 complete. Four more artifacts already build and are waiting for their modules:
+Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
 ## The authoring recipe
@@ -85,10 +84,10 @@ the bad source. The remediation is owed by the module named.
    **aarch64**, a different version and a different target. It was gated behind an ELF-magic
    check before any ELF lab was authored. That gate passed and module 2 ships a real ELF.
    Re-gate if the Zig version changes.
-3. **PEP 552 for `.pyc`** — describes a four-word header but is **Python 3.7** and gives no byte
-   sizes; the installed interpreter is **3.14**. → **Owed by module 11:** read the exact-version
-   local source, `importlib/_bootstrap_external.py` in the installed 3.14 tree, plus
-   `importlib.util.MAGIC_NUMBER`. Do not cite PEP 552 for byte layout.
+3. **PEP 552 for `.pyc`** — Python 3.7, no byte sizes. → **Discharged for module 11:** the header
+   was read from `importlib/_bootstrap_external.py` in the installed 3.14 tree (16 bytes: magic,
+   flags, then mtime+size OR an 8-byte hash depending on flag bit 0) and MAGIC_NUMBER measured as
+   2b0e0d0a. PEP 552 is not cited for layout.
 4. **ECMA-335 is dated 2012** while the SDK is .NET 10. → **Discharged for module 8:** both the
    standard (downloaded ecma335.pdf, read via pdftotext — metadata root 0x424A5342, CLI header,
    the evaluation-stack model) AND `docs/design/specs/Ecma-335-Augments.md` from `dotnet/runtime`
@@ -221,7 +220,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE const key + .NET PE computed key — done |
 | | 9 | Java — class format, JVM bytecode | JAR const serial + JAR computed serial — done |
 | | 10 | Android — dex, manifest, repack and resign | APK, six-entry, no Gradle — done |
-| | 11 | Interpreted — Python bytecode, bundled JS | PYC (**already built**) |
+| | 11 | Interpreted — Python bytecode, bundled JS | PYC — done |
 | 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE with anti-debug |
 | | 13 | Patching, Keygenning, Instrumentation | PE + .NET |
 | 5 Mastery | 14 | Methodology and Capstone | multi-format capstone |

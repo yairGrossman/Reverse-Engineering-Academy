@@ -14,6 +14,7 @@ import { peElfFormatsModule } from './modules/07-pe-and-elf-formats.ts';
 import { dotnetModule } from './modules/08-dotnet-il-metadata.ts';
 import { javaModule } from './modules/09-java-bytecode.ts';
 import { androidModule } from './modules/10-android-apk.ts';
+import { pythonModule } from './modules/11-python-bytecode.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -34,6 +35,7 @@ export const MODULES: Module[] = [
   dotnetModule,
   javaModule,
   androidModule,
+  pythonModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {
