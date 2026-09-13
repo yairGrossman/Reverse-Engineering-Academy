@@ -11,14 +11,14 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 8 of 14 |
-| Lessons | 30 |
-| Quiz questions | 72 |
-| Labs wired into lessons | 11 across modules 2–8 |
-| Lab artifacts built | 14 |
+| Modules written | 9 of 14 |
+| Lessons | 34 |
+| Quiz questions | 81 |
+| Labs wired into lessons | 13 across modules 2–9 |
+| Lab artifacts built | 15 |
 
-Modules 1–8 are done. Four more artifacts already build and are waiting for their modules:
-`m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
+Modules 1–9 are done. Four more artifacts already build and are waiting for their modules:
+`m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
@@ -219,7 +219,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
 | | 7 | PE and ELF File Formats | PE + ELF from one source — done |
 | 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE const key + .NET PE computed key — done |
-| | 9 | Java — class format, JVM bytecode | JAR (**already built**) |
+| | 9 | Java — class format, JVM bytecode | JAR const serial + JAR computed serial — done |
 | | 10 | Android — dex, manifest, repack and resign | APK (**already built**) |
 | | 11 | Interpreted — Python bytecode, bundled JS | PYC (**already built**) |
 | 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE with anti-debug |

@@ -90,6 +90,12 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'JAR',
     builtAt: '2026-09-12T13:19:01.313Z',
   },
+  "m09-jar-serial.zip": {
+    sha256: 'f6b1c96e2e32bc18be2e62723ceb89bd5306b1a74e4161979d67781c1f894883',
+    bytes: 1169,
+    format: 'JAR',
+    builtAt: '2026-09-13T08:41:20.218Z',
+  },
   "m10-apk-check.zip": {
     sha256: 'b4efecb041945dda239f594b7c092891fc59fc1363d9d66f3fb4801f3c764770',
     bytes: 4660,

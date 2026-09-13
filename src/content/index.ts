@@ -12,6 +12,7 @@ import { ghidraModule } from './modules/05-ghidra-static-analysis.ts';
 import { dynamicAnalysisModule } from './modules/06-dynamic-analysis.ts';
 import { peElfFormatsModule } from './modules/07-pe-and-elf-formats.ts';
 import { dotnetModule } from './modules/08-dotnet-il-metadata.ts';
+import { javaModule } from './modules/09-java-bytecode.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -30,6 +31,7 @@ export const MODULES: Module[] = [
   dynamicAnalysisModule,
   peElfFormatsModule,
   dotnetModule,
+  javaModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {
