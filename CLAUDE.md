@@ -2,7 +2,8 @@
 
 Interactive learning site: reverse engineering from zero to mastery. Vite + React 19 + TS strict, static SPA, no backend. Built from the `claude-code-academy` codebase, keeps its architecture.
 
-> **The course is complete: all 14 modules (Parts 1–5) are written.** `docs/CONTINUE-HERE.md` holds the authoring recipe and the state, should the course ever be extended; `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
+> **The course is complete: all 14 modules (Parts 1–5) are written** — 54 lessons, 125 questions, 20 binary labs.
+> `docs/AUTHORING.md` is the standing reference for editing or adding a module: the authoring recipe, the sources already verified, and the ones that failed their validity test. `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why; `docs/AUDIT-2026-09-13.md` records an independent verification of the finished course.
 
 ## Commands
 - Dev: `npm run dev` (port 5173)
@@ -12,10 +13,8 @@ Interactive learning site: reverse engineering from zero to mastery. Vite + Reac
 - Labs: `npm run labs:build` (all) or `npm run labs:build <lab-id>` (one)
 
 ## Where the project stands
-- **Written:** ALL 14 modules (Parts 1–5) — 54 lessons, 125 questions, 20 labs wired into lessons.
-- **Not written:** none — the curriculum is complete.
+- **Written:** all 14 modules (Parts 1–5) — 54 lessons, 125 questions, 20 labs wired into lessons, 20 artifacts built.
 - **Lab pipeline:** complete, proven for all six formats.
-- **Built but not yet used by any lesson:** (none remaining — all four pre-built managed/bytecode labs are now used).
 
 ## Architecture
 - **Content is data**: modules live in `src/content/modules/*.ts` as typed `Module` objects. Adding a module = new data file + import in `src/content/index.ts`. Never hardcode lesson content in components. Module files import with an explicit `.ts` extension — required so Node can run `scripts/lint-quizzes.ts` against the same content the site bundles.
@@ -38,7 +37,7 @@ The course this is built from had a real flaw: the correct option was reliably t
 When writing questions: keep every option in the same length band and register, and make each distractor a mistake a real learner makes. Expect the linter to push back on your first draft — it pushed back on every module written so far. **Fix the question, never the threshold.**
 
 ### 2. No technical claim from memory
-Every module file opens with a `SOURCES` comment listing what was actually fetched or measured while writing it. Format facts come from the format's own specification (PE: learn.microsoft.com; ELF: System V gABI; class files: JVMS for the JDK in use; dex: source.android.com; CIL: ECMA-335). Behavioural facts are **measured on this machine** and the measurement is quoted. Lab answers are read off the built artifact by running it or the named tool — never recalled. If a source does not cover the exact case, the lesson stops and says so rather than guessing. `docs/CONTINUE-HERE.md` lists which sources already passed this test and which failed it.
+Every module file opens with a `SOURCES` comment listing what was actually fetched or measured while writing it. Format facts come from the format's own specification (PE: learn.microsoft.com; ELF: System V gABI; class files: JVMS for the JDK in use; dex: source.android.com; CIL: ECMA-335). Behavioural facts are **measured on this machine** and the measurement is quoted. Lab answers are read off the built artifact by running it or the named tool — never recalled. If a source does not cover the exact case, the lesson stops and says so rather than guessing. `docs/AUTHORING.md` lists which sources already passed this test and which failed it.
 
 ## Labs (the binary exercises)
 - Sources in `labs/src/<lab-id>/` with a `meta.json`; `labs/build.mjs` compiles, verifies, packages and records.
@@ -62,7 +61,7 @@ Every module file opens with a `SOURCES` comment listing what was actually fetch
 ## Gotchas
 - `tsconfig.app.json` has `erasableSyntaxOnly` — no enums, use unions.
 - Content strings use double quotes when they contain apostrophes; template literals for multi-line code.
-- Each module's last lesson is a `practice-lab` (a `quiz-set`, one or more `lab` blocks, open exercises) — keep that convention.
+- Each module's last lesson is a `practice-lab` (a `quiz-set`, one or more `lab` blocks, open exercises) — keep that convention. Module 14 is the one deliberate exception: its final lesson is `capstone`.
 - The desktop browser pane renders these pages blank in screenshots (a known style-recalc/IntersectionObserver bug). Verify visuals in a real browser; use DOM/JS checks in the pane, which work fine.
 - WSL on the build machine is broken (`Wsl/CallMsi/Install/REGDB_E_CLASSNOTREG`) and is deliberately not used — Zig provides ELF cross-compilation instead.
 - README claims are verified mechanically before committing (TOC anchors resolve, relative links exist, short description under 120 chars, Licence is the final section). Keep it that way.

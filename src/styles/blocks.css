@@ -667,6 +667,12 @@
 .block-lab__q.is-wrong .block-lab__q-verdict { color: var(--bad); }
 
 .block-lab__q-explain,
+/* The hint toggle is a sibling of the answer form, not part of it — without
+   this it sits flush against the input row. */
+.block-lab__q > .btn--ghost {
+  margin-top: var(--space-3);
+}
+
 .block-lab__q-hint {
   font-size: var(--text-sm);
   color: var(--text-secondary);
@@ -715,4 +721,126 @@
   background: var(--bg-code);
   overflow-x: auto;
   white-space: pre;
+}
+
+/* ---------- quiz-set: a practice section's run of questions ----------
+   Mirrors .block-lab's container treatment and reuses the track/fill idiom
+   from .module-card so progress reads the same everywhere on the site. */
+.block-quizset {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-5) 0;
+}
+
+.block-quizset__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.block-quizset__badge {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.block-quizset__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}
+
+.block-quizset__count {
+  margin-left: auto;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.block-quizset__track {
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--bg-overlay);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+
+.block-quizset__fill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+  transition: width var(--dur-med) var(--ease);
+}
+
+.block-quizset__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Number sits beside the question; the nested .block-quiz keeps its own card. */
+.block-quizset__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.block-quizset__item > .block-quiz {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.block-quizset__num {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--bg-overlay);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.block-quizset__score {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--good-soft);
+  color: var(--good);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .block-quizset {
+    padding: var(--space-4);
+  }
+  .block-quizset__item {
+    gap: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block-quizset__fill {
+    transition: none;
+  }
 }
