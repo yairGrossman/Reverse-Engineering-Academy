@@ -2,7 +2,7 @@
 
 Interactive learning site: reverse engineering from zero to mastery. Vite + React 19 + TS strict, static SPA, no backend. Built from the `claude-code-academy` codebase, keeps its architecture.
 
-> **Continuing the course (writing modules 10–14)? Read `docs/CONTINUE-HERE.md` first.**
+> **Continuing the course (writing modules 11–14)? Read `docs/CONTINUE-HERE.md` first.**
 > It holds the authoring recipe, the per-module research plan, the sources already verified, the ones that FAILED verification, and the decisions not to re-litigate. This file is only the standing rules. `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
 
 ## Commands
@@ -13,10 +13,10 @@ Interactive learning site: reverse engineering from zero to mastery. Vite + Reac
 - Labs: `npm run labs:build` (all) or `npm run labs:build <lab-id>` (one)
 
 ## Where the project stands
-- **Written:** modules 1–9 — 34 lessons, 81 questions, 13 labs wired into lessons.
-- **Not written:** modules 10–14.
+- **Written:** modules 1–10 — 38 lessons, 90 questions, 14 labs wired into lessons.
+- **Not written:** modules 11–14.
 - **Lab pipeline:** complete, proven for all six formats.
-- **Built but not yet used by any lesson:** `m10-apk-check`, `m11-pyc-token` — sources in `labs/src/`, artifacts in `public/labs/`. The module that will use each one is named in its id.
+- **Built but not yet used by any lesson:** `m11-pyc-token` — sources in `labs/src/`, artifacts in `public/labs/`. The module that will use each one is named in its id.
 
 ## Architecture
 - **Content is data**: modules live in `src/content/modules/*.ts` as typed `Module` objects. Adding a module = new data file + import in `src/content/index.ts`. Never hardcode lesson content in components. Module files import with an explicit `.ts` extension — required so Node can run `scripts/lint-quizzes.ts` against the same content the site bundles.
