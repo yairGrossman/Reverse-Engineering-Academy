@@ -40,22 +40,22 @@ willingness to run unfamiliar executables inside a virtual machine.
 
 Fourteen modules across five parts — all written.
 
-| Part | # | Module | |
-|---|---|---|---|
-| **1 · Foundations** | 1 | What Reverse Engineering Is — the loop, the law, your toolbox | ✅ |
-| | 2 | How Source Becomes a Binary — what the compiler keeps and discards | ✅ |
-| | 3 | Hex, Memory & Data — bytes, endianness, XOR obfuscation | ✅ |
-| **2 · Native Code** | 4 | x86-64 Assembly You Actually Need | ✅ |
-| | 5 | Static Analysis with Ghidra | ✅ |
-| | 6 | Dynamic Analysis with x64dbg and gdb | ✅ |
-| | 7 | PE & ELF File Formats | ✅ |
-| **3 · Managed & Bytecode** | 8 | .NET — IL, metadata, assembly patching | ✅ |
-| | 9 | Java — class format, JVM bytecode | ✅ |
-| | 10 | Android — dex, manifests, repack and resign | ✅ |
-| | 11 | Interpreted — Python bytecode, bundled JS | ✅ |
-| **4 · Defeating Defenses** | 12 | Obfuscation, Packing, Anti-Analysis | ✅ |
-| | 13 | Patching, Keygenning, Instrumentation | ✅ |
-| **5 · Mastery** | 14 | Methodology & Capstone | ✅ |
+| Part | # | Module |
+|---|---|---|
+| **1 · Foundations** | 1 | What Reverse Engineering Is — the loop, the law, your toolbox |
+| | 2 | How Source Becomes a Binary — what the compiler keeps and discards |
+| | 3 | Hex, Memory & Data — bytes, endianness, XOR obfuscation |
+| **2 · Native Code** | 4 | x86-64 Assembly You Actually Need |
+| | 5 | Static Analysis with Ghidra |
+| | 6 | Dynamic Analysis with x64dbg and gdb |
+| | 7 | PE & ELF File Formats |
+| **3 · Managed & Bytecode** | 8 | .NET — IL, metadata, assembly patching |
+| | 9 | Java — class format, JVM bytecode |
+| | 10 | Android — dex, manifests, repack and resign |
+| | 11 | Interpreted — Python bytecode, bundled JS |
+| **4 · Defeating Defenses** | 12 | Obfuscation, Packing, Anti-Analysis |
+| | 13 | Patching, Keygenning, Instrumentation |
+| **5 · Mastery** | 14 | Methodology & Capstone |
 
 The course teaches free, open tools — Ghidra, x64dbg, ILSpy, CFR, jadx. Paid tools such as IDA
 Pro are named so you recognise them; none is required.
