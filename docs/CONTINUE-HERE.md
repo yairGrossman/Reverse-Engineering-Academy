@@ -218,7 +218,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
 | | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
 | | 7 | PE and ELF File Formats | PE + ELF from one source — done |
-| 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE (**already built**) |
+| 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE const key + .NET PE computed key — done |
 | | 9 | Java — class format, JVM bytecode | JAR (**already built**) |
 | | 10 | Android — dex, manifest, repack and resign | APK (**already built**) |
 | | 11 | Interpreted — Python bytecode, bundled JS | PYC (**already built**) |
