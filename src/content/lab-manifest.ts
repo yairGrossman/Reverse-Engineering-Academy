@@ -78,6 +78,12 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'NET',
     builtAt: '2026-09-12T13:19:00.414Z',
   },
+  "m08-net-licence.zip": {
+    sha256: 'ff32075c94f32c750d418cdac4ff7860f753f672f405956152a1b03973da8c2e',
+    bytes: 2709,
+    format: 'NET',
+    builtAt: '2026-09-12T23:49:00.614Z',
+  },
   "m09-jar-license.zip": {
     sha256: '6612edfb0947c5e6b7e055ef5feae9ad7bd2ee809f8d87409e6f9818848f2eeb',
     bytes: 987,

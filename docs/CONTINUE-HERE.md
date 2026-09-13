@@ -11,14 +11,14 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 7 of 14 |
-| Lessons | 26 |
-| Quiz questions | 63 |
-| Labs wired into lessons | 9 across modules 2–7 |
-| Lab artifacts built | 13 |
+| Modules written | 8 of 14 |
+| Lessons | 30 |
+| Quiz questions | 72 |
+| Labs wired into lessons | 11 across modules 2–8 |
+| Lab artifacts built | 14 |
 
-Modules 1–7 are done. Part 1 and Part 2 are complete. Four more artifacts already build and are waiting for their modules:
-`m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
+Modules 1–8 are done. Four more artifacts already build and are waiting for their modules:
+`m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
 (PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
@@ -89,9 +89,12 @@ the bad source. The remediation is owed by the module named.
    sizes; the installed interpreter is **3.14**. → **Owed by module 11:** read the exact-version
    local source, `importlib/_bootstrap_external.py` in the installed 3.14 tree, plus
    `importlib.util.MAGIC_NUMBER`. Do not cite PEP 552 for byte layout.
-4. **ECMA-335 is dated 2012** while the SDK is .NET 10. Core PE/CLI metadata is stable, but the
-   standard may be silent on newer additions. → **Owed by module 8:** also fetch
-   `docs/design/specs/Ecma-335-Augments.md` from the `dotnet/runtime` repository, and cite both.
+4. **ECMA-335 is dated 2012** while the SDK is .NET 10. → **Discharged for module 8:** both the
+   standard (downloaded ecma335.pdf, read via pdftotext — metadata root 0x424A5342, CLI header,
+   the evaluation-stack model) AND `docs/design/specs/Ecma-335-Augments.md` from `dotnet/runtime`
+   were fetched and cited. Module 8 stays on the stable core both agree on; anything from the
+   augments' feature list (module initializers, default interface methods, ref fields, ...) must
+   cite the augments if a later module touches it.
 5. **Intel SDM volume numbering** — the landing page was loose about which volume covers general
    registers versus MSRs. → **Discharged for module 4:** Vol. 1 (253665-092US, June 2026) and
    Vol. 2A (253666-092US, June 2026) were downloaded and quoted from directly; both PDFs convert

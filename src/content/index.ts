@@ -11,6 +11,7 @@ import { x86AssemblyModule } from './modules/04-x86-64-assembly.ts';
 import { ghidraModule } from './modules/05-ghidra-static-analysis.ts';
 import { dynamicAnalysisModule } from './modules/06-dynamic-analysis.ts';
 import { peElfFormatsModule } from './modules/07-pe-and-elf-formats.ts';
+import { dotnetModule } from './modules/08-dotnet-il-metadata.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -28,6 +29,7 @@ export const MODULES: Module[] = [
   ghidraModule,
   dynamicAnalysisModule,
   peElfFormatsModule,
+  dotnetModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {
