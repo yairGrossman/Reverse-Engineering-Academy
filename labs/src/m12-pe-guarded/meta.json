@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m12-pe-guarded.zip",
+  "password": "reverse",
+  "sources": ["guarded.c"],
+  "artifactName": "guarded.exe",
+  "flags": ["-O1"],
+  "strip": false
+}

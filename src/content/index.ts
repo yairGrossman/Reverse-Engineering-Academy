@@ -7,6 +7,17 @@ import type { LabBlock, Module, Part, QuizBlock } from '../types/content';
 import { whatIsReModule } from './modules/01-what-is-re.ts';
 import { sourceToBinaryModule } from './modules/02-source-to-binary.ts';
 import { hexMemoryDataModule } from './modules/03-hex-memory-data.ts';
+import { x86AssemblyModule } from './modules/04-x86-64-assembly.ts';
+import { ghidraModule } from './modules/05-ghidra-static-analysis.ts';
+import { dynamicAnalysisModule } from './modules/06-dynamic-analysis.ts';
+import { peElfFormatsModule } from './modules/07-pe-and-elf-formats.ts';
+import { dotnetModule } from './modules/08-dotnet-il-metadata.ts';
+import { javaModule } from './modules/09-java-bytecode.ts';
+import { androidModule } from './modules/10-android-apk.ts';
+import { pythonModule } from './modules/11-python-bytecode.ts';
+import { obfuscationModule } from './modules/12-obfuscation-packing.ts';
+import { patchingModule } from './modules/13-patching-keygen.ts';
+import { capstoneModule } from './modules/14-methodology-capstone.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -16,7 +27,22 @@ export const PARTS: Part[] = [
   { number: 5, title: 'Mastery' },
 ];
 
-export const MODULES: Module[] = [whatIsReModule, sourceToBinaryModule, hexMemoryDataModule];
+export const MODULES: Module[] = [
+  whatIsReModule,
+  sourceToBinaryModule,
+  hexMemoryDataModule,
+  x86AssemblyModule,
+  ghidraModule,
+  dynamicAnalysisModule,
+  peElfFormatsModule,
+  dotnetModule,
+  javaModule,
+  androidModule,
+  pythonModule,
+  obfuscationModule,
+  patchingModule,
+  capstoneModule,
+];
 
 export function getModule(moduleId: string): Module | undefined {
   return MODULES.find((m) => m.id === moduleId);

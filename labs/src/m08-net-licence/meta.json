@@ -1,0 +1,7 @@
+{
+  "format": "NET",
+  "zip": "m08-net-licence.zip",
+  "password": "reverse",
+  "project": "licence.csproj",
+  "artifactName": "licence.dll"
+}

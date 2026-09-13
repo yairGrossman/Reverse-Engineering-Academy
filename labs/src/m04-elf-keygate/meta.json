@@ -1,0 +1,8 @@
+{
+  "format": "ELF",
+  "zip": "m04-elf-keygate.zip",
+  "password": "reverse",
+  "sources": ["keygate.c"],
+  "artifactName": "keygate",
+  "flags": ["-O1"]
+}

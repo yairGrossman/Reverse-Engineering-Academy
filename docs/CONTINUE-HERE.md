@@ -11,15 +11,14 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 3 of 14 |
-| Lessons | 10 |
-| Quiz questions | 23 |
-| Labs wired into lessons | 3 (PE, ELF, PE) |
-| Lab artifacts built | 7 |
+| Modules written | 14 of 14 — COURSE COMPLETE |
+| Lessons | 54 |
+| Quiz questions | 125 |
+| Labs wired into lessons | 20 across modules 2–14 |
+| Lab artifacts built | 15 (all now used) |
 
-Modules 1–3 are done. Four more artifacts already build and are waiting for their modules:
-`m08-net-keycheck` (.NET), `m09-jar-license` (JAR), `m10-apk-check` (APK), `m11-pyc-token`
-(PYC). Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
+All 14 modules are done. Four more artifacts already build and are waiting for their modules:
+Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
 ## The authoring recipe
@@ -56,12 +55,21 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | JVM Spec **SE 21** ch.4 | `docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html` | `ClassFile`, magic `0xCAFEBABE`, constant pool, `Code` attribute | **Exact match to installed JDK 21** |
 | DEX format | `source.android.com/docs/core/runtime/dex-format` | `header_item`, `DEX_FILE_MAGIC`, `string_ids`, `class_defs` | Official AOSP |
 | System V gABI ch.4 | `sco.com/developers/gabi/latest/ch4.eheader.html` | `EI_MAG0..3` = `0x7f 'E' 'L' 'F'`, `e_type`, `e_machine` | Generic ABI |
+| System V gABI ch.4 **sheader** | `sco.com/developers/gabi/latest/ch4.sheader.html` | `sh_addr`/`sh_offset`/`sh_size`, SHF_EXECINSTR/ALLOC/WRITE, `.text`/`.rodata`/`.data` | Generic ABI — fetched for module 7 |
 | ECMA-335 | `ecma-international.org/publications-and-standards/standards/ecma-335/` | Partition II metadata, Partition III CIL | 6th ed. 2012 — **see failure 4** |
 | Intel SDM | `intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html` | Vol. 2 instruction reference, Vol. 1 basic architecture | version 092, 2026-08-19 |
 | Cloudflare `_headers` | `developers.cloudflare.com/pages/configuration/headers/` | 100 rules, 2,000 chars per line | Official — **see failure 1** |
 | Android cmdline-tools | `developer.android.com/studio` | `commandlinetools-win-15859902_latest.zip`, SHA-256 `90ae805d…fb04a` | Official |
 | Ghidra · x64dbg · jadx · ILSpy · CFR | `github.com/NationalSecurityAgency/ghidra` · `x64dbg.com` · `github.com/skylot/jadx` · `github.com/icsharpcode/ILSpy` · `github.com/leibnitz27/cfr` | licences, capabilities, entry points | Cited in module 1 |
 | gcc 15.2.0 · Python 3.14 · .NET 10.0.401 | local `--help` output | accepted flags | **Exact binaries in use** |
+| Intel SDM **Vol. 1** | `cdrdv2.intel.com/v1/dl/getContent/671436` | Sec. 3.4.1.1 registers, Table 3-2 widths, Sec. 3.4.3.1 flag bits, App. B condition codes | Order 253665-**092US**, June 2026 |
+| Intel SDM **Vol. 2A** | `cdrdv2.intel.com/v1/dl/getContent/671199` | CMP p. 3-161, Jcc p. 3-502 (signed vs unsigned wording) | Order 253666-**092US**, June 2026 |
+| System V AMD64 psABI | `gitlab.com/x86-psABIs/x86-64-ABI` → `x86-64-ABI/low-level-sys-info.tex` | arg registers RDI/RSI/RDX/RCX/r8/r9, Register Usage figure, 128-byte red zone | master, last commit 2025-03-12 — the wiki PDF link is JS-only, read the `.tex` |
+| MS x64 calling convention | `learn.microsoft.com/cpp/build/x64-calling-convention` | RCX/RDX/R8/R9, RAX return, volatile vs nonvolatile, 32-byte shadow store | msvc-170, page updated 2026-05-21 |
+| Ghidra, **installed here** | `C:\Users\yairg\tools\ghidra_12.1.3_PUBLIC` | `docs/GettingStarted.md` (Java 21 requirement, JAVA_HOME precedence), `docs/languages/html/pcoderef.html` (p-code definition), `support/analyzeHeadlessREADME.md` | 12.1.3, build 2026-Aug-17 — the release's own docs, so exact-case |
+| FNV hash | `isthe.com/chongo/tech/comp/fnv/index.html` | 32-bit offset basis 0x811C9DC5, prime 0x01000193, FNV-1a XORs before multiplying | names the m05 lab's second gate |
+| GDB manual | `sourceware.org/gdb/current/onlinedocs/gdb.html/` → `Registers.html`, `Memory.html` | `info registers` scope, `$` register syntax, `x/nfu` formats and unit sizes | current manual; the page does not state a version, so behaviour was measured against local gdb 16.3 |
+| x64dbg docs | `help.x64dbg.com/en/latest/commands/` → `breakpoint-control`, `debug-control` | SetBPX/bp, SetHardwareBreakpoint/bph, SetMemoryBPX/bpm, run/go, StepInto/sti, StepOver/sto, StepOut/rtr, StopDebug | command reference only — the intro page returns just a TOC, so NOTHING about the GUI or versions is claimed |
 
 ## Sources that FAILED the validity test
 
@@ -76,32 +84,54 @@ the bad source. The remediation is owed by the module named.
    **aarch64**, a different version and a different target. It was gated behind an ELF-magic
    check before any ELF lab was authored. That gate passed and module 2 ships a real ELF.
    Re-gate if the Zig version changes.
-3. **PEP 552 for `.pyc`** — describes a four-word header but is **Python 3.7** and gives no byte
-   sizes; the installed interpreter is **3.14**. → **Owed by module 11:** read the exact-version
-   local source, `importlib/_bootstrap_external.py` in the installed 3.14 tree, plus
-   `importlib.util.MAGIC_NUMBER`. Do not cite PEP 552 for byte layout.
-4. **ECMA-335 is dated 2012** while the SDK is .NET 10. Core PE/CLI metadata is stable, but the
-   standard may be silent on newer additions. → **Owed by module 8:** also fetch
-   `docs/design/specs/Ecma-335-Augments.md` from the `dotnet/runtime` repository, and cite both.
+3. **PEP 552 for `.pyc`** — Python 3.7, no byte sizes. → **Discharged for module 11:** the header
+   was read from `importlib/_bootstrap_external.py` in the installed 3.14 tree (16 bytes: magic,
+   flags, then mtime+size OR an 8-byte hash depending on flag bit 0) and MAGIC_NUMBER measured as
+   2b0e0d0a. PEP 552 is not cited for layout.
+4. **ECMA-335 is dated 2012** while the SDK is .NET 10. → **Discharged for module 8:** both the
+   standard (downloaded ecma335.pdf, read via pdftotext — metadata root 0x424A5342, CLI header,
+   the evaluation-stack model) AND `docs/design/specs/Ecma-335-Augments.md` from `dotnet/runtime`
+   were fetched and cited. Module 8 stays on the stable core both agree on; anything from the
+   augments' feature list (module initializers, default interface methods, ref fields, ...) must
+   cite the augments if a later module touches it.
 5. **Intel SDM volume numbering** — the landing page was loose about which volume covers general
-   registers versus MSRs. → **Owed by modules 4 and 6:** open the actual volume and cite it,
-   never the landing page.
+   registers versus MSRs. → **Discharged for module 4:** Vol. 1 (253665-092US, June 2026) and
+   Vol. 2A (253666-092US, June 2026) were downloaded and quoted from directly; both PDFs convert
+   cleanly with `pdftotext -layout`, which is how the tables were read. **Discharged for module 6** as well: the
+   flags material reuses the Vol. 1 sections module 4 quoted, and every debugger
+   fact in module 6 is either GDB-manual text or measured output from gdb 16.3.
+
+## Corrected while writing module 5
+
+**Module 1 told learners to install JDK 25 for Ghidra. That was the wrong case.** The figure came
+from the GitHub master README, which tracks building Ghidra from source. The release a learner
+downloads — 12.1.3 — states **Java 21** in its own `docs/GettingStarted.md` line 54. Module 1 now
+cites the release doc and warns that the README number is for source builds. Recheck whenever the
+Ghidra version moves: read `GettingStarted.md` inside the version you unpacked, never the repo
+README.
+
+**Now installed on this machine** (both missing when this handoff was first written): Ghidra 12.1.3
+at `C:\Users\yairg\tools\ghidra_12.1.3_PUBLIC`, and JDK 25 next to the existing JDK 21. Ghidra runs headless with `JAVA_HOME` pointed
+at the **21** tree. The invocation that produced module 5's listings:
+
+```bash
+JAVA_HOME=<jdk-21 dir> support/analyzeHeadless.bat <existing-project-dir> NAME   -import <file> -scriptPath <dir> -postScript DumpDecompile.java -deleteProject
+```
+
+The project directory must exist first — Ghidra aborts with `Directory not found` rather than
+creating it. `DumpDecompile.java` is a GhidraScript that walks every function through
+`DecompInterface` and prints the C; it is the reason module 5 quotes real decompiler output. Promote
+it into `labs/` tooling if a later module needs the same.
 
 ## Still to fetch, when that module is written
 
 | Module | Documents | Notes |
 |---|---|---|
-| 4 · x86-64 assembly | System V AMD64 psABI; Microsoft x64 calling convention | Both matter — the course ships PE *and* ELF labs. Plus Intel SDM Vol. 2, per failure 5. |
-| 5 · Ghidra | Ghidra's own docs and help | Describe the workflow in text; UI screenshots go stale. |
-| 6 · Dynamic analysis | x64dbg docs; the GNU GDB manual | Measure real command output on this machine. |
-| 7 · PE and ELF formats | The two format docs above, chapters on sections and imports | Verify RVA-to-file-offset arithmetic against a real artifact with `objdump`. |
-| 12 · Obfuscation and packing | UPX docs; vendor docs per technique covered | Teach detection, not evasion. |
-| 13 · Patching and instrumentation | Frida documentation | |
 | 14 · Capstone | None new | Reuses the above. |
 
 ## Labs still to build
 
-Modules 4–7 and 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+All modules have their artifacts. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -181,17 +211,17 @@ written. A tool whose current download cannot be verified does not go in the tab
 | 1 Foundations | 1 | What RE Is — legality, ethics, workflow, toolbox | none (setup checks) — done |
 | | 2 | How Source Becomes a Binary | PE + ELF from one source — done |
 | | 3 | Hex, Memory & Data | stripped PE — done |
-| 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF |
-| | 5 | Static Analysis with Ghidra | PE |
-| | 6 | Dynamic Analysis — x64dbg and gdb | PE |
-| | 7 | PE and ELF File Formats | PE + ELF |
-| 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE (**already built**) |
-| | 9 | Java — class format, JVM bytecode | JAR (**already built**) |
-| | 10 | Android — dex, manifest, repack and resign | APK (**already built**) |
-| | 11 | Interpreted — Python bytecode, bundled JS | PYC (**already built**) |
-| 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE with anti-debug |
-| | 13 | Patching, Keygenning, Instrumentation | PE + .NET |
-| 5 Mastery | 14 | Methodology and Capstone | multi-format capstone |
+| 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
+| | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
+| | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
+| | 7 | PE and ELF File Formats | PE + ELF from one source — done |
+| 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE const key + .NET PE computed key — done |
+| | 9 | Java — class format, JVM bytecode | JAR const serial + JAR computed serial — done |
+| | 10 | Android — dex, manifest, repack and resign | APK, six-entry, no Gradle — done |
+| | 11 | Interpreted — Python bytecode, bundled JS | PYC — done |
+| 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE anti-debug + UPX-packable — done |
+| | 13 | Patching, Keygenning, Instrumentation | PE crackme + .NET crackme — done |
+| 5 Mastery | 14 | Methodology and Capstone | multi-stage PE + ELF capstone — done |
 
 Shape per module: 3–4 teaching lessons, then a `practice-lab` lesson with one `quiz-set` of 6–8
 questions, one or two `lab` blocks, and open `exercise` blocks.

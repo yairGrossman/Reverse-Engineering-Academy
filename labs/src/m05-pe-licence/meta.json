@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m05-pe-licence.zip",
+  "password": "reverse",
+  "sources": ["licence.c"],
+  "artifactName": "licence.exe",
+  "flags": ["-O1"],
+  "strip": true
+}

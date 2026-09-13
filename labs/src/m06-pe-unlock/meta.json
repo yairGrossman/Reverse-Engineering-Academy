@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m06-pe-unlock.zip",
+  "password": "reverse",
+  "sources": ["unlock.c"],
+  "artifactName": "unlock.exe",
+  "flags": ["-O1", "-g"],
+  "strip": false
+}

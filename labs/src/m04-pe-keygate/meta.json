@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m04-pe-keygate.zip",
+  "password": "reverse",
+  "sources": ["../m04-elf-keygate/keygate.c"],
+  "artifactName": "keygate.exe",
+  "flags": ["-O1"],
+  "strip": false
+}

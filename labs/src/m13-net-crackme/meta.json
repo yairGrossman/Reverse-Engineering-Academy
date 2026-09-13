@@ -1,0 +1,7 @@
+{
+  "format": "NET",
+  "zip": "m13-net-crackme.zip",
+  "password": "reverse",
+  "project": "crackme.csproj",
+  "artifactName": "crackme.dll"
+}

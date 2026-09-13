@@ -1,0 +1,8 @@
+{
+  "format": "JAR",
+  "zip": "m09-jar-serial.zip",
+  "password": "reverse",
+  "sources": ["Serial.java"],
+  "artifactName": "serial.jar",
+  "mainClass": "Serial"
+}
