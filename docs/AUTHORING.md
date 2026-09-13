@@ -1,29 +1,16 @@
-# Continue here — building modules 4–14
+# Authoring reference
 
-Read this before writing course content. `CLAUDE.md` has the standing rules; this file has the
-method, the research already done, and the state. `ORIGINAL-PLAN.md` in this folder is the full
-argument behind both.
+How this course's content is made, and what was already established while making it. The
+curriculum is complete (14 modules); this is the standing reference for editing a module or
+adding one, not a to-do list.
 
-## Where things stand
-
-Re-derived by running the content, not from memory:
-
-| | |
-|---|---|
-| Parts defined | 5 |
-| Modules written | 14 of 14 — COURSE COMPLETE |
-| Lessons | 54 |
-| Quiz questions | 125 |
-| Labs wired into lessons | 20 across modules 2–14 |
-| Lab artifacts built | 15 (all now used) |
-
-All 14 modules are done. Four more artifacts already build and are waiting for their modules:
-Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
-the lab's behaviour determines what the lesson can ask.
+`ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
+`AUDIT-2026-09-13.md` records an independent verification of the finished course.
 
 ## The authoring recipe
 
-The loop that produced modules 1–3. It is slow on purpose; the quality comes from the order.
+
+The loop that produced all 14 modules. It is slow on purpose; the quality comes from the order.
 
 1. **Fetch sources first, write second.** Identify the authoritative document for every factual
    claim the module will make, fetch it, and only then start writing. Do not draft from
@@ -47,7 +34,8 @@ The loop that produced modules 1–3. It is slow on purpose; the quality comes f
 
 ## Sources already verified — reuse, do not re-derive
 
-Fetched during planning and Part 1, with the exact-case verdict recorded at the time.
+
+Fetched while writing the course, with the exact-case verdict recorded at the time.
 
 | Source | URL | Confirms | Case match |
 |---|---|---|---|
@@ -72,6 +60,7 @@ Fetched during planning and Part 1, with the exact-case verdict recorded at the 
 | x64dbg docs | `help.x64dbg.com/en/latest/commands/` → `breakpoint-control`, `debug-control` | SetBPX/bp, SetHardwareBreakpoint/bph, SetMemoryBPX/bpm, run/go, StepInto/sti, StepOver/sto, StepOut/rtr, StopDebug | command reference only — the intro page returns just a TOC, so NOTHING about the GUI or versions is claimed |
 
 ## Sources that FAILED the validity test
+
 
 Each was rejected during planning. A fresh session cannot regenerate this — it would simply use
 the bad source. The remediation is owed by the module named.
@@ -103,6 +92,7 @@ the bad source. The remediation is owed by the module named.
 
 ## Corrected while writing module 5
 
+
 **Module 1 told learners to install JDK 25 for Ghidra. That was the wrong case.** The figure came
 from the GitHub master README, which tracks building Ghidra from source. The release a learner
 downloads — 12.1.3 — states **Java 21** in its own `docs/GettingStarted.md` line 54. Module 1 now
@@ -123,34 +113,8 @@ creating it. `DumpDecompile.java` is a GhidraScript that walks every function th
 `DecompInterface` and prints the C; it is the reason module 5 quotes real decompiler output. Promote
 it into `labs/` tooling if a later module needs the same.
 
-## Still to fetch, when that module is written
-
-| Module | Documents | Notes |
-|---|---|---|
-| 14 · Capstone | None new | Reuses the above. |
-
-## Labs still to build
-
-All modules have their artifacts. Follow `labs/src/m03-pe-xorsecret/` as the
-template — a `meta.json` plus source. The `meta.json` shape:
-
-```json
-{
-  "format": "PE",
-  "zip": "m03-pe-xorsecret.zip",
-  "password": "reverse",
-  "sources": ["xorsecret.c"],
-  "artifactName": "xorsecret.exe",
-  "flags": ["-O1"],
-  "strip": true
-}
-```
-
-Design each lab so its answer cannot be found with the previous module's technique. Module 3's
-binary is stripped and XOR-encodes its secret precisely so that `strings` fails and the learner
-has to go further.
-
 ## Authoring contract (types)
+
 
 `quiz-set` holds `QuizBlock[]`, each with its own site-unique id. `lab` holds:
 
@@ -171,6 +135,7 @@ has to go further.
 
 ## Decisions already made — do not re-litigate
 
+
 Each was argued through and settled. Reopening one wastes a session.
 
 - **Lab answers ship as plaintext, not hashed.** `QuizOption.correct` and `ExerciseBlock.answer`
@@ -190,6 +155,7 @@ Each was argued through and settled. Reopening one wastes a session.
 
 ## The learner's toolbox — a design already decided
 
+
 The installed toolchain builds the labs. The **learner needs their own tools to solve them**,
 and the course says so in exactly three places, with no duplication:
 
@@ -204,31 +170,10 @@ and the course says so in exactly three places, with no duplication:
 Every download URL and version in that table is fetched from the vendor's own release page when
 written. A tool whose current download cannot be verified does not go in the table.
 
-## Curriculum, and the lab each module owes
-
-| Part | # | Module | Lab artifact |
-|---|---|---|---|
-| 1 Foundations | 1 | What RE Is — legality, ethics, workflow, toolbox | none (setup checks) — done |
-| | 2 | How Source Becomes a Binary | PE + ELF from one source — done |
-| | 3 | Hex, Memory & Data | stripped PE — done |
-| 2 Native Code | 4 | x86-64 Assembly You Actually Need | ELF + PE from one source — done |
-| | 5 | Static Analysis with Ghidra | stripped PE, two gates — done |
-| | 6 | Dynamic Analysis — x64dbg and gdb | PE, gdb-measurable — done |
-| | 7 | PE and ELF File Formats | PE + ELF from one source — done |
-| 3 Managed & Bytecode | 8 | .NET — IL, metadata, patching | .NET PE const key + .NET PE computed key — done |
-| | 9 | Java — class format, JVM bytecode | JAR const serial + JAR computed serial — done |
-| | 10 | Android — dex, manifest, repack and resign | APK, six-entry, no Gradle — done |
-| | 11 | Interpreted — Python bytecode, bundled JS | PYC — done |
-| 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE anti-debug + UPX-packable — done |
-| | 13 | Patching, Keygenning, Instrumentation | PE crackme + .NET crackme — done |
-| 5 Mastery | 14 | Methodology and Capstone | multi-stage PE + ELF capstone — done |
-
-Shape per module: 3–4 teaching lessons, then a `practice-lab` lesson with one `quiz-set` of 6–8
-questions, one or two `lab` blocks, and open `exercise` blocks.
-
 ## Verification checklist per module
 
-The standard Part 1 was held to:
+
+Every module was held to this:
 
 - `npx tsc -b` clean; `npm run lint` clean (oxlint plus the quiz gate).
 - `npm run labs:build` — the artifact passes its magic-byte check, and `unzip -P <pw>`
@@ -239,28 +184,3 @@ The standard Part 1 was held to:
   one wrong one, and confirm both survive a reload.
 - Progress export/import round-trips, and a hand-edited junk id is filtered by
   `parseProgressJson`.
-
-## Open items
-
-- **`1995630.png` is in git history at commit `179fbed`** — a third-party reference image swept
-  in by `git add -A`, in a repo published under MIT plus CC BY-NC. It is deleted from the working
-  tree but still in history, and the repository is now public, so removing it needs a history
-  rewrite and a force-push. Unresolved; the owner has been told.
-- **No screenshot in the README.** Visuals belong near the top and the project has none. Needs a
-  real browser capture — the desktop browser pane cannot write a file.
-- **CSP is report-only.** `public/_headers` carries the enforcing policy commented out. Before
-  switching it on, verify the progress Export button still works: it builds a `blob:` URL in
-  `ProgressTransfer.tsx`. If a browser blocks that, allow `blob:` in the right directive — do
-  not loosen `connect-src`.
-- **`package.json` `homepage`** points at a Cloudflare Pages URL that may not be deployed yet.
-
-## Token economy for the next session
-
-Part 1 cost roughly 473k tokens, including all the scaffolding and pipeline work, which is done
-and will not be repeated. Per-module cost from here is much lower. To keep it that way:
-
-- Read `labs/src/<lab-id>/` and one existing module as a template — not all three.
-- Fetch each specification once and quote what is needed into `SOURCES`; do not re-fetch per
-  lesson.
-- Use `npm run lint` as the feedback loop rather than re-reading content files to self-check.
-- Write one module per session where possible, and commit it before starting the next.

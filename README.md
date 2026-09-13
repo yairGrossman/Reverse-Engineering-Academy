@@ -4,7 +4,7 @@ Learn reverse engineering by taking apart real compiled binaries — PE, ELF, .N
 
 [![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Content licence: CC BY-NC 4.0](https://img.shields.io/badge/content-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE-CONTENT)
-[![Status: early](https://img.shields.io/badge/status-early%20%E2%80%94%20part%201%20of%205-orange.svg)](#project-status)
+[![Status: complete](https://img.shields.io/badge/course-14%20modules%20%C2%B7%20complete-brightgreen.svg)](#project-status)
 
 A free, interactive course that starts at "what is a hex dump" and works toward unpacking and
 instrumentation. It runs entirely in your browser — no backend, no account, no tracking.
@@ -38,24 +38,24 @@ willingness to run unfamiliar executables inside a virtual machine.
 
 ## What you will learn
 
-Fourteen modules across five parts.
+Fourteen modules across five parts — all written.
 
-| Part | # | Module | |
-|---|---|---|---|
-| **1 · Foundations** | 1 | What Reverse Engineering Is — the loop, the law, your toolbox | ✅ |
-| | 2 | How Source Becomes a Binary — what the compiler keeps and discards | ✅ |
-| | 3 | Hex, Memory & Data — bytes, endianness, XOR obfuscation | ✅ |
-| **2 · Native Code** | 4 | x86-64 Assembly You Actually Need | ⏳ |
-| | 5 | Static Analysis with Ghidra | ⏳ |
-| | 6 | Dynamic Analysis with x64dbg and gdb | ⏳ |
-| | 7 | PE & ELF File Formats | ⏳ |
-| **3 · Managed & Bytecode** | 8 | .NET — IL, metadata, assembly patching | ⏳ |
-| | 9 | Java — class format, JVM bytecode | ⏳ |
-| | 10 | Android — dex, manifests, repack and resign | ⏳ |
-| | 11 | Interpreted — Python bytecode, bundled JS | ⏳ |
-| **4 · Defeating Defenses** | 12 | Obfuscation, Packing, Anti-Analysis | ⏳ |
-| | 13 | Patching, Keygenning, Instrumentation | ⏳ |
-| **5 · Mastery** | 14 | Methodology & Capstone | ⏳ |
+| Part | # | Module |
+|---|---|---|
+| **1 · Foundations** | 1 | What Reverse Engineering Is — the loop, the law, your toolbox |
+| | 2 | How Source Becomes a Binary — what the compiler keeps and discards |
+| | 3 | Hex, Memory & Data — bytes, endianness, XOR obfuscation |
+| **2 · Native Code** | 4 | x86-64 Assembly You Actually Need |
+| | 5 | Static Analysis with Ghidra |
+| | 6 | Dynamic Analysis with x64dbg and gdb |
+| | 7 | PE & ELF File Formats |
+| **3 · Managed & Bytecode** | 8 | .NET — IL, metadata, assembly patching |
+| | 9 | Java — class format, JVM bytecode |
+| | 10 | Android — dex, manifests, repack and resign |
+| | 11 | Interpreted — Python bytecode, bundled JS |
+| **4 · Defeating Defenses** | 12 | Obfuscation, Packing, Anti-Analysis |
+| | 13 | Patching, Keygenning, Instrumentation |
+| **5 · Mastery** | 14 | Methodology & Capstone |
 
 The course teaches free, open tools — Ghidra, x64dbg, ILSpy, CFR, jadx. Paid tools such as IDA
 Pro are named so you recognise them; none is required.
@@ -142,11 +142,12 @@ Tool locations are overridable by environment variable (`REA_ZIG`, `REA_7Z`,
 
 ## Project status
 
-**Early.** Part 1 is written and playable: 3 modules, 10 lessons, 23 questions and 3 binary
-labs. Modules 4–14 are planned and not yet written.
+**Complete.** All 14 modules across 5 parts are written: **54 lessons, 125 questions and 20
+binary labs** covering Windows PE, Linux ELF, .NET, Java, Android and Python bytecode.
 
-The lab build pipeline is complete and proven for all six formats — the .NET, JAR, APK and
-`.pyc` artifacts already build and are waiting for the modules that will use them.
+Every lab answer was verified by deriving it from the built artifact with the tool the lab
+names — see [`docs/AUDIT-2026-09-13.md`](docs/AUDIT-2026-09-13.md) for an independent check of
+all 83 lab answers.
 
 ## Support
 

@@ -12,7 +12,7 @@
   A summary would lose exactly the reasoning that stops a future session
   re-deciding a settled question.
 
-  For what is still actionable, read CONTINUE-HERE.md in this folder.
+  For the standing authoring reference, read AUTHORING.md in this folder.
 -->
 
 # Reverse Engineering Academy
