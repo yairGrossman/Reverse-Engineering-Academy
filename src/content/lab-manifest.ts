@@ -108,4 +108,10 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PYC',
     builtAt: '2026-09-12T13:19:04.880Z',
   },
+  "m12-pe-guarded.zip": {
+    sha256: '6cc1fb86cd8078d4ec1c55d8013c63e9e76df3610afd6d943712a410b5ea1d34',
+    bytes: 40600,
+    format: 'PE',
+    builtAt: '2026-09-13T08:58:04.188Z',
+  },
 };

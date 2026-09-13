@@ -15,6 +15,7 @@ import { dotnetModule } from './modules/08-dotnet-il-metadata.ts';
 import { javaModule } from './modules/09-java-bytecode.ts';
 import { androidModule } from './modules/10-android-apk.ts';
 import { pythonModule } from './modules/11-python-bytecode.ts';
+import { obfuscationModule } from './modules/12-obfuscation-packing.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -36,6 +37,7 @@ export const MODULES: Module[] = [
   javaModule,
   androidModule,
   pythonModule,
+  obfuscationModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {

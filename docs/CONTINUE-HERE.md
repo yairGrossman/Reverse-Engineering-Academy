@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 11 of 14 |
-| Lessons | 42 |
-| Quiz questions | 99 |
-| Labs wired into lessons | 15 across modules 2–11 |
+| Modules written | 12 of 14 |
+| Lessons | 46 |
+| Quiz questions | 108 |
+| Labs wired into lessons | 16 across modules 2–12 |
 | Lab artifacts built | 15 (all now used) |
 
-Modules 1–11 are done. Parts 1–3 complete. Four more artifacts already build and are waiting for their modules:
+Modules 1–12 are done. Four more artifacts already build and are waiting for their modules:
 Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
@@ -127,13 +127,12 @@ it into `labs/` tooling if a later module needs the same.
 
 | Module | Documents | Notes |
 |---|---|---|
-| 12 · Obfuscation and packing | UPX docs; vendor docs per technique covered | Teach detection, not evasion. |
 | 13 · Patching and instrumentation | Frida documentation | |
 | 14 · Capstone | None new | Reuses the above. |
 
 ## Labs still to build
 
-Modules 12–14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Modules 13 and 14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -221,7 +220,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 9 | Java — class format, JVM bytecode | JAR const serial + JAR computed serial — done |
 | | 10 | Android — dex, manifest, repack and resign | APK, six-entry, no Gradle — done |
 | | 11 | Interpreted — Python bytecode, bundled JS | PYC — done |
-| 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE with anti-debug |
+| 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE anti-debug + UPX-packable — done |
 | | 13 | Patching, Keygenning, Instrumentation | PE + .NET |
 | 5 Mastery | 14 | Methodology and Capstone | multi-format capstone |
 
