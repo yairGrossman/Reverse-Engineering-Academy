@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m13-pe-crackme.zip",
+  "password": "reverse",
+  "sources": ["crackme.c"],
+  "artifactName": "crackme.exe",
+  "flags": ["-O1"],
+  "strip": false
+}

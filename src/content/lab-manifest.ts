@@ -114,4 +114,16 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-13T08:58:04.188Z',
   },
+  "m13-net-crackme.zip": {
+    sha256: 'c0c0667d942f364fa5df5322983dbd9f3578821154f9bb94e2186c1fd4ec2407',
+    bytes: 2459,
+    format: 'NET',
+    builtAt: '2026-09-13T09:05:10.355Z',
+  },
+  "m13-pe-crackme.zip": {
+    sha256: 'b2a963b8c223132ef3e73eb9a2199102134c2f2ca3abdc7c78fd45e3a9d219b3',
+    bytes: 40741,
+    format: 'PE',
+    builtAt: '2026-09-13T09:03:33.783Z',
+  },
 };

@@ -11,13 +11,13 @@ Re-derived by running the content, not from memory:
 | | |
 |---|---|
 | Parts defined | 5 |
-| Modules written | 12 of 14 |
-| Lessons | 46 |
-| Quiz questions | 108 |
-| Labs wired into lessons | 16 across modules 2–12 |
+| Modules written | 13 of 14 |
+| Lessons | 51 |
+| Quiz questions | 118 |
+| Labs wired into lessons | 18 across modules 2–13 |
 | Lab artifacts built | 15 (all now used) |
 
-Modules 1–12 are done. Four more artifacts already build and are waiting for their modules:
+Modules 1–13 are done. Four more artifacts already build and are waiting for their modules:
 Read the source and the `meta.json` in `labs/src/<lab-id>/` before writing the module —
 the lab's behaviour determines what the lesson can ask.
 
@@ -127,12 +127,11 @@ it into `labs/` tooling if a later module needs the same.
 
 | Module | Documents | Notes |
 |---|---|---|
-| 13 · Patching and instrumentation | Frida documentation | |
 | 14 · Capstone | None new | Reuses the above. |
 
 ## Labs still to build
 
-Modules 13 and 14 have no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
+Module 14 has no artifacts yet. Follow `labs/src/m03-pe-xorsecret/` as the
 template — a `meta.json` plus source. The `meta.json` shape:
 
 ```json
@@ -221,7 +220,7 @@ written. A tool whose current download cannot be verified does not go in the tab
 | | 10 | Android — dex, manifest, repack and resign | APK, six-entry, no Gradle — done |
 | | 11 | Interpreted — Python bytecode, bundled JS | PYC — done |
 | 4 Defeating Defenses | 12 | Obfuscation, Packing, Anti-Analysis | PE anti-debug + UPX-packable — done |
-| | 13 | Patching, Keygenning, Instrumentation | PE + .NET |
+| | 13 | Patching, Keygenning, Instrumentation | PE crackme + .NET crackme — done |
 | 5 Mastery | 14 | Methodology and Capstone | multi-format capstone |
 
 Shape per module: 3–4 teaching lessons, then a `practice-lab` lesson with one `quiz-set` of 6–8
