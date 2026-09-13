@@ -17,6 +17,7 @@ import { androidModule } from './modules/10-android-apk.ts';
 import { pythonModule } from './modules/11-python-bytecode.ts';
 import { obfuscationModule } from './modules/12-obfuscation-packing.ts';
 import { patchingModule } from './modules/13-patching-keygen.ts';
+import { capstoneModule } from './modules/14-methodology-capstone.ts';
 
 export const PARTS: Part[] = [
   { number: 1, title: 'Foundations' },
@@ -40,6 +41,7 @@ export const MODULES: Module[] = [
   pythonModule,
   obfuscationModule,
   patchingModule,
+  capstoneModule,
 ];
 
 export function getModule(moduleId: string): Module | undefined {

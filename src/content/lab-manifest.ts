@@ -126,4 +126,16 @@ export const LAB_MANIFEST: Record<string, LabArtifact> = {
     format: 'PE',
     builtAt: '2026-09-13T09:03:33.783Z',
   },
+  "m14-elf-capstone.zip": {
+    sha256: '4599267f0271542a8e9d2124a84cf0168695b7e552800039329cbf7c94757469',
+    bytes: 3489,
+    format: 'ELF',
+    builtAt: '2026-09-13T09:10:35.056Z',
+  },
+  "m14-pe-capstone.zip": {
+    sha256: '2549302b8fb7278a4d8e21086e78acb5f84abc422c2384c5b84e7e1992ce1938',
+    bytes: 6844,
+    format: 'PE',
+    builtAt: '2026-09-13T09:10:13.073Z',
+  },
 };

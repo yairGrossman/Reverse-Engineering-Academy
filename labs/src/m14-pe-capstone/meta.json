@@ -1,0 +1,9 @@
+{
+  "format": "PE",
+  "zip": "m14-pe-capstone.zip",
+  "password": "reverse",
+  "sources": ["capstone.c"],
+  "artifactName": "capstone.exe",
+  "flags": ["-O1"],
+  "strip": true
+}

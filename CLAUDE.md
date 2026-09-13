@@ -2,8 +2,7 @@
 
 Interactive learning site: reverse engineering from zero to mastery. Vite + React 19 + TS strict, static SPA, no backend. Built from the `claude-code-academy` codebase, keeps its architecture.
 
-> **Continuing the course (writing module 14)? Read `docs/CONTINUE-HERE.md` first.**
-> It holds the authoring recipe, the per-module research plan, the sources already verified, the ones that FAILED verification, and the decisions not to re-litigate. This file is only the standing rules. `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
+> **The course is complete: all 14 modules (Parts 1–5) are written.** `docs/CONTINUE-HERE.md` holds the authoring recipe and the state, should the course ever be extended; `docs/ORIGINAL-PLAN.md` is the historical record of what was agreed and why.
 
 ## Commands
 - Dev: `npm run dev` (port 5173)
@@ -13,8 +12,8 @@ Interactive learning site: reverse engineering from zero to mastery. Vite + Reac
 - Labs: `npm run labs:build` (all) or `npm run labs:build <lab-id>` (one)
 
 ## Where the project stands
-- **Written:** modules 1–13 — 51 lessons, 118 questions, 18 labs wired into lessons.
-- **Not written:** module 14.
+- **Written:** ALL 14 modules (Parts 1–5) — 54 lessons, 125 questions, 20 labs wired into lessons.
+- **Not written:** none — the curriculum is complete.
 - **Lab pipeline:** complete, proven for all six formats.
 - **Built but not yet used by any lesson:** (none remaining — all four pre-built managed/bytecode labs are now used).
 

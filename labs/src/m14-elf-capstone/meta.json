@@ -1,0 +1,8 @@
+{
+  "format": "ELF",
+  "zip": "m14-elf-capstone.zip",
+  "password": "reverse",
+  "sources": ["../m14-pe-capstone/capstone.c"],
+  "artifactName": "capstone",
+  "flags": ["-O1"]
+}
